@@ -1,0 +1,107 @@
+/* header */
+.header {
+	position: relative;
+}
+
+/* ------------------- Navigation ----------------------------------- */
+.nav {	
+		width: 100%;
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		margin: 0px;
+		padding: 0px;
+	}
+.nav li {	
+		width: 20%;
+		height: 24px;
+		display: inline-block;
+		opacity: 0.8;
+		background-color: black;
+		text-align: center;
+		vertical-align: middle;
+		min-width: 3cm;
+		position: relative; /* um Untermenü daran auszurichten */
+	}
+.nav_reduced {
+	display: none;
+}
+.nav_wide {
+	display: inline;
+}
+
+/* ------------------------- Banner --------------------------------- */
+
+.banner	{ 
+	width: 100%;
+	}
+
+/* ----------------Drop down Menu ----------------------------------- */
+ul { 
+		list-style-type: none;
+		position: relative; 
+		display: inline-table;
+	}
+ul ul { 
+		display: none 
+	}
+ul li:hover > ul { 
+		display: block; 
+		margin-top: 50px; 
+	}
+
+.submenue li { 
+		clear: both; 
+		text-align: left; 
+		padding-left: 15%; 
+		height: 25px; 
+		background-color: 101010; 
+		opacity: 1.0; 
+		font-size: smaller;
+		width: 100%;
+	}
+.submenue {
+	position: absolute;
+	top: -25;
+	left: 0;
+	margin: 0px;
+	padding: 0px;
+	z-index: 1000;
+}
+
+/* ------------------ Breadcrumb ------------------------------------ */
+.breadcrumb {
+	font-size: smaller;
+	background-color: #666666;
+	padding-left: 5%;
+	padding-right: 5%;
+	position: absolute;
+	bottom: -16px;
+	left: 0px;
+	width: 100%;
+	z-index: 0;
+}
+.breadcrumb--step {
+	
+}
+.breadcrumb--current {
+	
+}
+
+/* ------------------ Anpassungen Smartphone ------------------------ */
+
+@media (max-width: 660px) {
+	/* reduced navigation */
+	.nav_reduced {
+		display: inline;
+	}
+	.nav_wide {
+		display: none;
+	}
+	.nav {
+		margin-top: 0.2cm;
+		min-width: 1cm;
+		position: relative;
+		top: -20px;
+	}
+}

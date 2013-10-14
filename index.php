@@ -1,17 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="utf-8">
+    <!-- common settings -->
+    <?php include_once('head.html'); ?>
+    <!-- page specific settings -->
     <title>Medienprojekt</title>
-    <link rel="stylesheet" type="text/css" href="./css/content.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="./js/content.js"></script>
 </head>
 <body class="...">
 <!-- Header -->
-<div id="header"></div>
+<?php include_once('header.html'); ?>
 <div class="main-container">
     <!-- Content -->
     <div class="container">
@@ -21,13 +18,13 @@
                 <div id="sidebar" class="content-layout-cell sidebar">
                     <div class="outer">
                         <div class="inner">
-                            <div id="..." class="content-list dark-bg">
+                            <div id="..." class="content-list dark-bg toggle-item">
                                 <h2 class="sidebar-title display-desktop">Chronik</h2>
-                                <div id="menu-div" class="menublock-sidebar hidden-desktop">
+                                <div id="menu-div" class="menublock-sidebar hidden-desktop toggle">
                                     <h2 class="menu-title link" id="menu-sidebar" >Menü</h2>
                                 </div>
                                 <!-- Sidebar Menu -->
-                                <div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg">
+                                <div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg toggle-content">
                                     <ul class="menu">
                                         <li>
                                             <a href="#">
@@ -56,23 +53,6 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <script type="text/javascript">
-                                    var menuVisible = 0;
-                                    $(function() {
-                                        $('#menu-sidebar').click(function(e){
-                                            e.preventDefault();
-                                            if (menuVisible === 0) {
-                                                // Box is currently hidden, show it:
-                                                $('#box-menu-sidebar').slideDown(200);
-                                                menuVisible = 1;
-                                            } else {
-                                                // Box is currently shown, hide it:
-                                                $('#box-menu-sidebar').slideUp(200);
-                                                menuVisible = 0;
-                                            }
-                                        });
-                                    });
-                                </script>
                                 <!-- end Sidebar Menu -->
                                 <!-- Timer -->
                                 <div class="menublock-sidebar timer">
@@ -246,34 +226,17 @@
                                 <ul>
                                     <li class="one-col">
                                         <!-- foreach addresses as address -->
-                                        <div  class="main-content-box box-borders bg clearfix">
-                                            <h2 class="box-title link" id="address-name" >Box Überschrift</h2>
+                                        <div  class="main-content-box box-borders-top bg clearfix toggle-item">
+                                            <h2 class="box-title link toggle" id="address-name" >Box Überschrift</h2>
                                             <a class="right box-link" href="#">
                                                 <span>E-Mail</span>
                                                 <div class="forward-raquo menu-link right"></div>
                                             </a>
-                                            <div class="box-body slider" id="box-address-name" style="display: none;">
+                                            <div class="box-body toggle-content box-borders-bottom" id="box-address-name" style="display: none;">
                                                 <p>Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!</p>
                                             </div>
                                         </div>
 
-                                        <script type="text/javascript">
-                                            var boxVisible = 0;
-                                            $(function() {
-                                                $('#address-name').click(function(e){
-                                                    e.preventDefault();
-                                                    if (boxVisible === 0) {
-                                                        // Box is currently hidden, show it:
-                                                        $('#box-address-name').slideDown(200);
-                                                        boxVisible = 1;
-                                                    } else {
-                                                        // Box is currently shown, hide it:
-                                                        $('#box-address-name').slideUp(200);
-                                                        boxVisible = 0;
-                                                    }
-                                                });
-                                            });
-                                        </script>
                                         <!-- endforeach addresses as address -->
                                     </li>
                                 </ul>
@@ -360,9 +323,17 @@
     <!-- end Content -->
 </div>
 <!-- Footer -->
-<div id="footer"></div>
+<?php include_once('footer.html'); ?>
 </body>
 
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.toggle-item').each(function(idx, itm) {
+            $(itm).find('.toggle').on('click', function() {
+                $(itm).find('.toggle-content').toggle(200);
+            });
+        });
+    });
+</script>
 
 </html>

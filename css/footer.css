@@ -1,0 +1,45 @@
+.footer {
+	font-family: Verdana;
+	font-size:	small;
+	background-color: #666666;
+	color: white;
+	min-height: 100px;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	margin-top:	5%;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+}
+.footer_heading {
+	font-size: medium;
+}
+.footer_login, .footer_adress, .footer_shortlinks {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.footer_login {
+	width: 20%;
+	height: 100%;
+	display: inline-block;
+	text-align: left;
+}
+.footer_login form {
+	margin: 0px;
+}
+.footer_adress {
+	width: 20%;
+	height: 100%;
+	display: inline-block;
+	text-align: left;
+}
+.footer_shortlinks {
+	width: 20%;
+	height: 100%;
+	display: inline-block;
+	text-align: left;
+}
