@@ -145,7 +145,7 @@
                                     <li class="first two-col">
                                         <div class="main-content-box box-borders bg clearfix">
                                             <div class="box-head">
-                                                <img src="./media/demo.jpg" />
+                                                <img src="data/images/demo.jpg" />
                                             </div>
                                             <div class="box-body">
                                                 <p>Erster Absatz mit Text?</p>
@@ -160,7 +160,7 @@
                                     <li class="last two-col">
                                         <div class="main-content-box box-borders bg clearfix">
                                             <div class="box-head">
-                                                <img src="./media/demo.jpg" />
+                                                <img src="data/images/demo.jpg" />
                                             </div>
                                             <div class="box-body">
                                                 <p>Erster Absatz mit Text?</p>
@@ -175,7 +175,7 @@
                                     <li class="first two-col">
                                         <div class="main-content-box box-borders bg clearfix">
                                             <div class="box-head">
-                                                <img src="./media/demo.jpg" />
+                                                <img src="data/images/demo.jpg" />
                                             </div>
                                             <div class="box-body">
                                                 <p>Erster Absatz mit Text?</p>
@@ -190,7 +190,7 @@
                                     <li class="last two-col">
                                         <div class="main-content-box box-borders bg clearfix">
                                             <div class="box-head">
-                                                <img src="./media/demo.jpg" />
+                                                <img src="data/images/demo.jpg" />
                                             </div>
                                             <div class="box-body">
                                                 <p>Erster Absatz mit Text?</p>

@@ -22,7 +22,7 @@ header, body {
 		min-height: 80%;
 	}
 
-.round_corners {
+.round-corners {
 	border-radius: 10px 10px 10px 10px;
 	-moz-border-radius: 10px 10px 10px 10px;
 	-webkit-border-radius: 10px 10px 10px 10px;
@@ -30,10 +30,10 @@ header, body {
 }
 
 /* -------------- Variation der Inhalte bei Online / Offline -------- */
-.offline_only {
+.offline-only {
 	display: none !important;
 }
-.online_only {
+.online-only {
 	/* display: none; */
 }
 
@@ -71,12 +71,12 @@ a:hover {
 	}
 
 /* ------------- Bilder und Bildbeschriftungen ---------------------- */
-.img_hochkant { 
+.img-hochkant {
 		width: 15%;
 		padding: 2%; 
 	}
 
-.img_description {
+.img-description {
 		font-size: smaller;
 		background-color: black;
 		opacity: 0.5;
@@ -90,7 +90,7 @@ a:hover {
 
 @media (max-width: 660px) {
 	/* reduced images */
-	img, .img_description { 
+	img, .img-description {
 		display: none 
 	}
 	.banner { 

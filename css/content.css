@@ -36,6 +36,12 @@ body {
     border-top: 40px solid #666666;
     border-bottom: 5px solid #666666;
 }
+.box-borders-top {
+    border-top: 40px solid #666666;
+}
+.box-borders-bottom {
+    border-bottom: 5px solid #666666;
+}
 h1, h2, h3, h4, h5, h6 {
     font-family: "Trebuchet MS",Arial,Helvetica,Sans-Serif;
     font-style: normal;
@@ -67,10 +73,16 @@ b {
     display: block;
 }
 .forward-raquo {
-    background: url("./icons/arrows.png") no-repeat transparent;
+    background: url("../data/icons/arrows.png") no-repeat transparent;
 }
 .back-raquo {
-    background: url("./icons/arrows-back.png") no-repeat transparent;
+    background: url("../data/icons/arrows-back.png") no-repeat transparent;
+}
+.down-raquo {
+    background: url("../data/icons/arrows-down.png") no-repeat transparent;
+}
+.up-raquo {
+    background: url("../data/icons/arrows-up.png") no-repeat transparent;
 }
 .link, .menu-link, .content-link {
     cursor: pointer;
@@ -79,6 +91,11 @@ b {
     background-size: 18px auto;
     width: 18px;
     height: 22px;
+}
+.toggle-link {
+    background-size: 22px auto;
+    width: 22px;
+    height: 18px;
 }
 a {
     text-decoration:none;

@@ -23,10 +23,10 @@
 		min-width: 3cm;
 		position: relative; /* um Untermenü daran auszurichten */
 	}
-.nav_reduced {
+.nav-reduced {
 	display: none;
 }
-.nav_wide {
+.nav-wide {
 	display: inline;
 }
 
@@ -78,7 +78,7 @@ ul li:hover > ul {
 	position: absolute;
 	bottom: -16px;
 	left: 0px;
-	width: 100%;
+	width: 90%;
 	z-index: 0;
 }
 .breadcrumb--step {
@@ -92,10 +92,10 @@ ul li:hover > ul {
 
 @media (max-width: 660px) {
 	/* reduced navigation */
-	.nav_reduced {
+	.nav-reduced {
 		display: inline;
 	}
-	.nav_wide {
+	.nav-wide {
 		display: none;
 	}
 	.nav {

@@ -1,4 +1,4 @@
-.report_menue {
+.report-menue {
 	width: 10%;
 	background-color: black;
 	opacity: 0.8;
@@ -13,12 +13,12 @@
 	margin-left: 0%;
 	display: inline-block;
 }
-.report_info {
+.report-info {
 	margin-left: 10%;
 	margin-right: auto;
 	margin-bottom: 3%;
 	width: 80%;
 }
-.table_heading {
+.table-heading {
 	font-weight: bolder;
 }
