@@ -40,6 +40,9 @@ b {
     font-size: 15px;
     display: block;
 }
+p {
+    margin: 12px 0;
+}
 a {
     text-decoration:none;
     cursor: pointer;
@@ -48,7 +51,30 @@ a {
 div, form {
 	display: block;
 }
-
+form {
+    margin: 0;
+}
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+hr {
+    color: #fff;
+}
+input {
+    border: none;
+    height: 25px;
+}
+button {
+    border: none;
+    height: 29px;
+    padding: 0 3px 0 7px;
+    line-height: 21px;
+}
+button .forward-raquo {
+    margin-left: 13px;
+}
 /* ---------------------------------------------------------------------
  * ---------------- own classes ----------------------------------------
  * ---------------------------------------------------------------------

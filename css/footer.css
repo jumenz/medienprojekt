@@ -29,7 +29,10 @@
 	display: inline-block;
 	width: 100%;
 }
-
+.footer-info input {
+    margin-bottom: 4px;
+    padding-left: 7px;
+}
 .footer li {
 	margin-top: 20px;
 	margin-bottom: 20px;
