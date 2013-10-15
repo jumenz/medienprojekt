@@ -123,14 +123,14 @@ class Application_Model_Addresses
      */
     public function getData() {
         $valueArray = array(
-            'prefix' => $this->getPrefix(),
-            'name' => $this->getName(),
-            'prename' => $this->getPrename(),
+            'prefix' => ucfirst($this->getPrefix()),
+            'name' => ucfirst($this->getName()),
+            'prename' => ucfirst($this->getPrename()),
             'date_birth' => $this->getDateBirth(),
-            'street' => $this->getStreet(),
+            'street' => ucfirst($this->getStreet()),
             'nr' => $this->getNr(),
             'zipcode' => $this->getZipcode(),
-            'city' => $this->getCity(),
+            'city' => ucfirst($this->getCity()),
             'mail' => $this->getMail(),
             'mobile' => $this->getMobile(),
             'phone' => $this->getPhone()
@@ -504,8 +504,6 @@ class Application_Model_Addresses
                 $id[$key] = $value['id'];
                 $name[$key] = $value['name'];
                 $prename[$key] = $value['prename'];
-                $job[$key] = $value['job_id'];
-                $state[$key] = $value['state'];
             }
             switch ($sort)
             {
@@ -515,11 +513,8 @@ class Application_Model_Addresses
                 case 'name':
                     array_multisort($name, SORT_ASC, $prename, SORT_ASC, $this->list_data);
                     break;
-                case 'job_id':
-                    array_multisort($job, SORT_ASC, $this->list_data);
-                    break;
-                case 'state':
-                    array_multisort($state, SORT_ASC, $this->list_data);
+                case 'prename':
+                    array_multisort($prename, SORT_ASC, $this->list_data);
                     break;
             }
         }

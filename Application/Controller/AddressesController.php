@@ -44,7 +44,8 @@ switch($action)
     case 'new':
         break;
     case 'list';
-        $model->setListData();
+        $model->setListData()
+        ->sortListData('name');
         break;
     case 'edit';
         $model->setData($_POST)
@@ -68,13 +69,13 @@ switch($action)
             ->update($model->getData());
         $action = 'back';
         break;
-    case 'sort';
-        $model->setListData()
-            ->sortListData($_GET['sort']);
-        $action = 'list';
-        break;
     case 'detail';
         $model->setAddressData($id, $name , $prename);
+        break;
+    case 'sort';
+        $model->setListData()
+        ->sortListData($_GET['sort']);
+        $action = 'list';
         break;
 }
 
