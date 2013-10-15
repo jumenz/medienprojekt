@@ -2,11 +2,11 @@
     define('ROOT', dirname(dirname(__FILE__)));
     require_once(ROOT . '/Head.phtml');
     ?>
-    <script type="text/javascript" src="/skin/javascript.js"></script>
+    <script type="text/javascript" src="/js/db.js"></script>
 </head>
     <?php
     $edit = false;
-    $data_Array = $model->getApplicantData();
+    $data_Array = $model->getAddressData();
     if (isset($data_Array))
     {
 //        print_r($data_Array);
@@ -23,16 +23,16 @@
                     <article class="mod-account mod-content mod-login col-6">
                     <?php if ($edit) : ?>
                         <header class="sub-header">
-                            <h1>Bewerber bearbeiten</h1>
+                            <h1>bearbeiten</h1>
                         </header>
                     <?php else : ?>
                         <header class="sub-header">
-                            <h1>Bewerber hinzufügen</h1>
+                            <h1>hinzufügen</h1>
                         </header>
                     <?php endif ?>
                         <div class="row">
-                                <!--<form name="new" action="../Controller/ApplicantController.php" method="post" onsubmit="return chkAppForm ()" onreset="return resetChk()">-->
-                            <form name="new" action="/application/Controller/ApplicantController.php" method="post" >
+                                <!--<form name="new" action="../Controller/AddressesController.php" method="post" onsubmit="return chkAppForm ()" onreset="return resetChk()">-->
+                            <form name="new" action="/Application/Controller/AddressesController.php" method="post" >
                                 <article class="mod content col-3 push-right">
                                     <fieldset id="contact">
                                         <header class="sub-header">
@@ -211,7 +211,7 @@
                                             <label for="mediator">Vermittler</label>
                                             <p class="input">
                                                 <input type="text" id="mediator" class="input input-text" title="Vermittler" name="mediator"
-                                                       maxlength="255" value="<?php if ($edit) { echo $data_Array['mediator']; } ?>">
+                                                       maxlength="255" value="<?php if ($edit) { echo $data_Array['mobile']; } ?>">
                                             </p>
                                         </div>
                                         <div class="form-item clearfix">

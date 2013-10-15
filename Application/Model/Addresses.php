@@ -7,7 +7,7 @@
 require_once('../Local.php');
 require_once('Db.php');
 
-class Application_Model_Applicant
+class Application_Model_Addresses
 {
     /**
      * @var Application_Model_Db
@@ -20,11 +20,7 @@ class Application_Model_Applicant
     /**
      * @var array
      */
-    protected $applicant_data;
-    /**
-     * @var string
-     */
-    protected $experiences;
+    protected $address_data;
     /**
      * @var integer
      */
@@ -72,150 +68,21 @@ class Application_Model_Applicant
     /**
      * @var string
      */
-    protected $mediator;
-    /**
-     * @var float
-     */
-    protected $brokerage;
-    /**
-     * @var string
-     */
-    protected $date_receipt;
-    /**
-     * @var string
-     */
-    protected $date_acknowledgement;
-    /**
-     * @var string
-     */
-    protected $date_rejection;
-    /**
-     * state of process
-     *
-     * @var string
-     */
-    protected $state;
-    /**
-     * @var string
-     */
-    protected $date_interview;
-    /**
-     * @var string
-     */
-    protected $time_interview;
-    /**
-     * @var string
-     */
-    protected $language_1;
-    /**
-     * @var string
-     */
-    protected $language_2;
-    /**
-     * @var string
-     */
-    protected $language_3;
-    /**
-     * @var string
-     */
-    protected $language_4;
-    /**
-     * @var string
-     */
-    protected $level_1;
-    /**
-     * @var string
-     */
-    protected $level_2;
-    /**
-     * @var string
-     */
-    protected $level_3;
-    /**
-     * @var string
-     */
-    protected $level_4;
-    /**
-     * @var string
-     */
-    protected $qualification;
-    /**
-     * Positive impression
-     *
-     * @var string
-     */
-    protected $pro;
-    /**
-     * Negative impression
-     *
-     * @var string
-     */
-    protected $contra;
-    /**
-     * Target salary
-     *
-     * @var float
-     */
-    protected $salary;
-    /**
-     * Reason of occupational change or general reason of application
-     *
-     * @var string
-     */
-    protected $reason;
-    /**
-     * @var string
-     */
-    protected $employment;
-    /**
-     * @var string
-     */
-    protected $last_employer;
-    /**
-     * Possible date of joining
-     *
-     * @var string
-     */
-    protected $date_joining;
-    /**
-     * @var string
-     */
-    protected $result;
-    /**
-     * @var string
-     */
-    protected $questions;
-    /**
-     * ID of advertised job
-     *
-     * @var integer
-     */
-    protected $job_id;
-    /**
-     * Speculative application
-     *
-     * @var boolean
-     */
-    protected $proactive;
-    /**
-     * Save permanent
-     *
-     * @var boolean
-     */
-    protected $permanent;
+    protected $mobile;
+
 
     /**
      * Constructor
      */
     public function __construct() {
-        $this->resourceModel = new Application_Model_Db(MYSQL_APP_TABLE);
+        $this->resourceModel = new Application_Model_Db(MYSQL_ADDRESSES_TABLE);
     }
 
     /**
      * Sets all protected Data
      *
      * @param $valueArray
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setData($valueArray) {
         foreach ($valueArray as $key => $value){
@@ -227,33 +94,13 @@ class Application_Model_Applicant
     /**
      * Changes the Dates into database format
      *
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function changeDate2MySql()
     {
-        if ($this->date_acknowledgement !='')
-        {
-            $this->date_acknowledgement = $this->resourceModel->dateGerman2MySql($this->getDateAcknowledgement());
-        }
         if ($this->date_birth != '')
         {
             $this->date_birth = $this->resourceModel->dateGerman2MySql($this->getDateBirth());
-        }
-        if ($this->date_interview != '')
-        {
-            $this->date_interview = $this->resourceModel->dateGerman2MySql($this->getDateInterview());
-        }
-        if ($this->date_joining != '')
-        {
-            $this->date_joining = $this->resourceModel->dateGerman2MySql($this->getDateJoining());
-        }
-        if ($this->date_receipt != '')
-        {
-            $this->date_receipt = $this->resourceModel->dateGerman2MySql($this->getDateReceipt());
-        }
-        if ($this->date_rejection != '')
-        {
-            $this->date_rejection = $this->resourceModel->dateGerman2MySql($this->getDateRejection());
         }
         return $this;
     }
@@ -276,55 +123,26 @@ class Application_Model_Applicant
      */
     public function getData() {
         $valueArray = array(
-            'brokerage' => $this->getBrokerage(),
-            'city' => $this->getCity(),
-            'contra' => $this->getContra(),
-            'date_acknowledgement' => $this->getDateAcknowledgement(),
-            'date_birth' => $this->getDateBirth(),
-            'date_interview' => $this->getDateInterview(),
-            'date_joining' => $this->getDateJoining(),
-            'date_receipt' => $this->getDateReceipt(),
-            'date_rejection' => $this->getDateRejection(),
-            'employment' => $this->getEmployment(),
-            'experiences' => $this->getExperiences(),
-            'job_id' => $this->getJobId(),
-            'language_1' => $this->getLanguage1(),
-            'level_1' => $this->getLevel1(),
-            'language_2' => $this->getLanguage2(),
-            'level_2' => $this->getLevel2(),
-            'language_3' => $this->getLanguage3(),
-            'level_3' => $this->getLevel3(),
-            'language_4' => $this->getLanguage4(),
-            'level_4' => $this->getLevel4(),
-            'last_employer' => $this->getLastEmployer(),
-            'mail' => $this->getMail(),
-            'mediator' => $this->getMediator(),
-            'name' => $this->getName(),
-            'nr' => $this->getNr(),
-            'permanent' => $this->getPermanent(),
-            'phone' => $this->getPhone(),
             'prefix' => $this->getPrefix(),
+            'name' => $this->getName(),
             'prename' => $this->getPrename(),
-            'pro' => $this->getPro(),
-            'proactive' => $this->getProactive(),
-            'qualification' => $this->getQualification(),
-            'questions' => $this->getQuestions(),
-            'reason' => $this->getReason(),
-            'result' => $this->getResult(),
-            'salary' => $this->getSalary(),
-            'state' => $this->getState(),
+            'date_birth' => $this->getDateBirth(),
             'street' => $this->getStreet(),
-            'time_interview' => $this->getTimeInterview(),
-            'zipcode' => $this->getZipcode()
+            'nr' => $this->getNr(),
+            'zipcode' => $this->getZipcode(),
+            'city' => $this->getCity(),
+            'mail' => $this->getMail(),
+            'mobile' => $this->getMobile(),
+            'phone' => $this->getPhone()
         );
         return $valueArray;
     }
 
     /**
-     * Sets applicant ID
+     * Sets address ID
      *
      * @param int $id
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setId($id)
     {
@@ -333,7 +151,7 @@ class Application_Model_Applicant
     }
 
     /**
-     * Returns applicant ID
+     * Returns address ID
      *
      * @return int
      */
@@ -343,56 +161,10 @@ class Application_Model_Applicant
     }
 
     /**
-     * Sets Job ID
-     *
-     * @param int $job_id
-     * @return Application_Model_Applicant
-     */
-    public function setJobId($job_id)
-    {
-        $this->job_id = $job_id;
-        return $this;
-    }
-
-    /**
-     * Returns Job ID
-     *
-     * @return int
-     */
-    public function getJobId()
-    {
-        return $this->job_id;
-    }
-
-    /**
-     * Sets if applicant may be saved permanent
-     *
-     * @param boolean $permanent
-     * @return Application_Model_Applicant
-     */
-    public function setPermanent($permanent)
-    {
-        $this->permanent = $permanent;
-        return $this;
-    }
-
-    /**
-     * Returns if applicant may be saved permanent
-     * @return boolean
-     */
-    public function getPermanent()
-    {
-        if(isset($this->permanent)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Sets applicants prefix
+     * Sets prefix
      *
      * @param string $prefix
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setPrefix($prefix)
     {
@@ -401,7 +173,7 @@ class Application_Model_Applicant
     }
 
     /**
-     * Returns applicants prefix
+     * Returns prefix
      *
      * @return string
      */
@@ -411,54 +183,10 @@ class Application_Model_Applicant
     }
 
     /**
-     * Sets if application was proactive
-     *
-     * @param boolean $proactive
-     * @return Application_Model_Applicant
-     */
-    public function setProactive($proactive)
-    {
-        $this->proactive = $proactive;
-        return $this;
-    }
-
-    /**
-     * Returns if application was proactive
-     *
-     * @return boolean
-     */
-    public function getProactive()
-    {
-        return $this->proactive;
-    }
-
-    /**
-     * Sets time of the Interview
-     *
-     * @param string $time_interview
-     * @return Application_Model_Applicant
-     */
-    public function setTimeInterview($time_interview)
-    {
-        $this->time_interview = $time_interview;
-        return $this;
-    }
-
-    /**
-     * Returns time of the Interview
-     *
-     * @return string
-     */
-    public function getTimeInterview()
-    {
-        return $this->time_interview;
-    }
-
-    /**
      * Sets zipcode
      *
      * @param string $zipcode
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setZipcode($zipcode)
     {
@@ -480,7 +208,7 @@ class Application_Model_Applicant
      * Sets Date of Birth
      *
      * @param $date_birth string
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setDateBirth($date_birth)
     {
@@ -506,7 +234,7 @@ class Application_Model_Applicant
      * Sets street
      *
      * @param $street
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setStreet($street)
     {
@@ -518,7 +246,7 @@ class Application_Model_Applicant
      * Sets street number
      *
      * @param $nr
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setNr($nr)
     {
@@ -530,7 +258,7 @@ class Application_Model_Applicant
      * Sets postal code
      *
      * @param $postal_code
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setPostalCode($postal_code)
     {
@@ -542,7 +270,7 @@ class Application_Model_Applicant
      * Sets city
      *
      * @param $city
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setCity($city)
     {
@@ -598,7 +326,7 @@ class Application_Model_Applicant
      * Sets e-mail
      *
      * @param $mail
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setMail($mail)
     {
@@ -620,7 +348,7 @@ class Application_Model_Applicant
      * Sets name
      *
      * @param $name
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setName($name)
     {
@@ -642,7 +370,7 @@ class Application_Model_Applicant
      * Sets phone number
      *
      * @param $phone
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setPhone($phone)
     {
@@ -664,7 +392,7 @@ class Application_Model_Applicant
      * Sets prename
      *
      * @param $prename
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setPrename($prename)
     {
@@ -683,578 +411,29 @@ class Application_Model_Applicant
     }
 
     /**
-     * Sets state of application
+     * Sets mobile
      *
-     * @param string $state
-     * @return Application_Model_Applicant
+     * @param string $mobile
+     * @return Application_Model_Addresses
      */
-    public function setState($state)
+    public function setMobile($mobile)
     {
-        $this->state = $state;
+        $this->mobile = $mobile;
         return $this;
     }
 
     /**
-     * Returns state of application
+     * Returns mobile
      *
      * @return string
      */
-    public function getState()
+    public function getMobile()
     {
-        return $this->state;
+        return $this->mobile;
     }
 
     /**
-     * Sets negative impression
-     *
-     * @param string $contra
-     * @return Application_Model_Applicant
-     */
-    public function setContra($contra)
-    {
-        $this->contra = $contra;
-        return $this;
-    }
-
-    /**
-     * Returns negative impression
-     * @return string
-     */
-    public function getContra()
-    {
-        return $this->contra;
-    }
-
-    /**
-     * Sets date of acknowledgement
-     *
-     * @param string $date_acknowledgement
-     * @return Application_Model_Applicant
-     */
-    public function setDateAcknowledgement($date_acknowledgement)
-    {
-        $this->date_acknowledgement = $date_acknowledgement;
-        return $this;
-    }
-
-    /**
-     * Returns date of acknowledgement
-     *
-     * @return string
-     */
-    public function getDateAcknowledgement()
-    {
-        return $this->date_acknowledgement;
-    }
-
-    /**
-     * Sets date of interview
-     *
-     * @param string $date_interview
-     * @return Application_Model_Applicant
-     */
-    public function setDateInterview($date_interview)
-    {
-        $this->date_interview = $date_interview;
-        return $this;
-    }
-
-    /**
-     * Returns date of interview
-     *
-     * @return string
-     */
-    public function getDateInterview()
-    {
-        return $this->date_interview;
-    }
-
-    /**
-     * Sets  possible date of joining the company
-     *
-     * @param string $date_joining
-     * @return Application_Model_Applicant
-     */
-    public function setDateJoining($date_joining)
-    {
-        $this->date_joining = $date_joining;
-        return $this;
-    }
-
-    /**
-     * Returns possible date of joining the company
-     *
-     * @return string
-     */
-    public function getDateJoining()
-    {
-        return $this->date_joining;
-    }
-
-    /**
-     * Sets date of receipt
-     *
-     * @param string $date_receipt
-     * @return Application_Model_Applicant
-     */
-    public function setDateReceipt($date_receipt)
-    {
-        $this->date_receipt = $date_receipt;
-        return $this;
-    }
-
-    /**
-     * Returns date of receipt
-     *
-     * @return string
-     */
-    public function getDateReceipt()
-    {
-        return $this->date_receipt;
-    }
-
-    /**
-     * Sets date of rejection
-     *
-     * @param string $date_rejection
-     * @return Application_Model_Applicant
-     */
-    public function setDateRejection($date_rejection)
-    {
-        $this->date_rejection = $date_rejection;
-        return $this;
-    }
-
-    /**
-     * Returns date of rejection
-     *
-     * @return string
-     */
-    public function getDateRejection()
-    {
-        return $this->date_rejection;
-    }
-
-    /**
-     * Sets job experiences
-     *
-     * @param string $experiences
-     * @return Application_Model_Applicant
-     */
-    public function setExperiences($experiences)
-    {
-        $this->experiences = $experiences;
-        return $this;
-    }
-
-    /**
-     * Return job experiences
-     *
-     * @return string
-     */
-    public function getExperiences()
-    {
-        return $this->experiences;
-    }
-
-    /**
-     * Sets knowledge of first language
-     *
-     * @param string $language_1
-     * @return Application_Model_Applicant
-     */
-    public function setLanguage1($language_1)
-    {
-        $this->language_1 = $language_1;
-        return $this;
-    }
-
-    /**
-     * Returns knowledge of first languages
-     *
-     * @return string
-     */
-    public function getLanguage1()
-    {
-        return $this->language_1;
-    }
-
-    /**
-     * Sets knowledge of second language
-     *
-     * @param string $language_2
-     * @return Application_Model_Applicant
-     */
-    public function setLanguage2($language_2)
-    {
-        $this->language_2 = $language_2;
-        return $this;
-    }
-
-    /**
-     * Returns knowledge of second languages
-     *
-     * @return string
-     */
-    public function getLanguage2()
-    {
-        return $this->language_2;
-    }
-    /**
-     * Sets knowledge of third language
-     *
-     * @param string $language_3
-     * @return Application_Model_Applicant
-     */
-    public function setLanguage3($language_3)
-    {
-        $this->language_3 = $language_3;
-        return $this;
-    }
-
-    /**
-     * Returns knowledge of third languages
-     *
-     * @return string
-     */
-    public function getLanguage3()
-    {
-        return $this->language_3;
-    }
-    /**
-     * Sets knowledge of fourth language
-     *
-     * @param string $language_4
-     * @return Application_Model_Applicant
-     */
-    public function setLanguage4($language_4)
-    {
-        $this->language_4 = $language_4;
-        return $this;
-    }
-
-    /**
-     * Returns knowledge of fourth languages
-     *
-     * @return string
-     */
-    public function getLanguage4()
-    {
-        return $this->language_4;
-    }
-
-    /**
-     * Sets language level
-     *
-     * @param string $level_1
-     * @return Application_Model_Applicant
-     */
-    public function setLevel1($level_1)
-    {
-        $this->level_1 = $level_1;
-        return $this;
-    }
-
-    /**
-     * Returns language level
-     *
-     * @return string
-     */
-    public function getLevel1()
-    {
-        return $this->level_1;
-    }
-
-    /**
-     * Sets language level
-     *
-     * @param string $level_2
-     * @return Application_Model_Applicant
-     */
-    public function setLevel2($level_2)
-    {
-        $this->level_2 = $level_2;
-        return $this;
-    }
-
-    /**
-     * Returns language level
-     *
-     * @return string
-     */
-    public function getLevel2()
-    {
-        return $this->level_2;
-    }
-
-    /**
-     * Sets language level
-     *
-     * @param string $level_3
-     * @return Application_Model_Applicant
-     */
-    public function setLevel3($level_3)
-    {
-        $this->level_3 = $level_3;
-        return $this;
-    }
-
-    /**
-     * Returns language level
-     *
-     * @return string
-     */
-    public function getLevel3()
-    {
-        return $this->level_3;
-    }
-
-    /**
-     * Sets language level
-     *
-     * @param string $level_4
-     * @return Application_Model_Applicant
-     */
-    public function setLevel4($level_4)
-    {
-        $this->level_4 = $level_4;
-        return $this;
-    }
-
-    /**
-     * Returns language level
-     *
-     * @return string
-     */
-    public function getLevel4()
-    {
-        return $this->level_4;
-    }
-
-    /**
-     * Sets name of last employer
-     *
-     * @param string $last_employer
-     * @return Application_Model_Applicant
-     */
-    public function setLastEmployer($last_employer)
-    {
-        $this->last_employer = $last_employer;
-        return $this;
-    }
-
-    /**
-     * Returns name of last employer
-     *
-     * @return string
-     */
-    public function getLastEmployer()
-    {
-        return $this->last_employer;
-    }
-
-    /**
-     * Sets mediator
-     *
-     * @param string $mediator
-     * @return Application_Model_Applicant
-     */
-    public function setMediator($mediator)
-    {
-        $this->mediator = $mediator;
-        return $this;
-    }
-
-    /**
-     * Returns mediator
-     *
-     * @return string
-     */
-    public function getMediator()
-    {
-        return $this->mediator;
-    }
-
-    /**
-     * Sets positive impressions
-     *
-     * @param string $pro
-     * @return Application_Model_Applicant
-     */
-    public function setPro($pro)
-    {
-        $this->pro = $pro;
-        return $this;
-    }
-
-    /**
-     * Returns positive impressions
-     *
-     * @return string
-     */
-    public function getPro()
-    {
-        return $this->pro;
-    }
-
-    /**
-     * Sets applicant qualification
-     *
-     * @param string $qualification
-     * @return Application_Model_Applicant
-     */
-    public function setQualification($qualification)
-    {
-        $this->qualification = $qualification;
-        return $this;
-    }
-
-    /**
-     * Returns applicant qualification
-     *
-     * @return string
-     */
-    public function getQualification()
-    {
-        return $this->qualification;
-    }
-
-    /**
-     * Sets reason of occupational change or general reason of application
-     *
-     * @param string $reason
-     * @return Application_Model_Applicant
-     */
-    public function setReason($reason)
-    {
-        $this->reason = $reason;
-        return $this;
-    }
-
-    /**
-     *
-     * Returns reason of occupational change or general reason of application
-     *
-     * @return string
-     */
-    public function getReason()
-    {
-        return $this->reason;
-    }
-
-    /**
-     * Sets if applicant is unemployed or change
-     *
-     * @param string $employment
-     * @return Application_Model_Applicant
-     */
-    public function setEmployment($employment)
-    {
-        $this->employment = $employment;
-        return $this;
-    }
-
-    /**
-     * Returns if applicant is unemployed or change
-     *
-     * @return string
-     */
-    public function getEmployment()
-    {
-        return $this->employment;
-    }
-
-
-    /**
-     * Sets target salary
-     * @param float $salary
-     * @return Application_Model_Applicant
-     */
-    public function setSalary($salary)
-    {
-        $this->salary = $salary;
-        return $this;
-    }
-
-    /**
-     * Returns target salary
-     *
-     * @return float
-     */
-    public function getSalary()
-    {
-        return $this->salary;
-    }
-
-    /**
-     * Sets brokerage
-     *
-     * @param float $brokerage
-     * @return Application_Model_Applicant
-     */
-    public function setBrokerage($brokerage)
-    {
-        $this->brokerage = $brokerage;
-        return $this;
-    }
-
-    /**
-     * Returns brokerage
-     *
-     * @return float
-     */
-    public function getBrokerage()
-    {
-        return $this->brokerage;
-    }
-
-    /**
-     * Sets open questions
-     *
-     * @param string $questions
-     * @return Application_Model_Applicant
-     */
-    public function setQuestions($questions)
-    {
-        $this->questions = $questions;
-        return $this;
-    }
-
-    /**
-     * Returns open questions
-     *
-     * @return string
-     */
-    public function getQuestions()
-    {
-        return $this->questions;
-    }
-
-    /**
-     * Sets Result of application
-     *
-     * @param string $result
-     * @return Application_Model_Applicant
-     */
-    public function setResult($result)
-    {
-        $this->result = $result;
-        return $this;
-    }
-
-    /**
-     * Returns Result of application
-     *
-     * @return string
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-
-    /**
-     * Saves applicant information
+     * Saves address information
      */
     public function save()
     {
@@ -1262,23 +441,15 @@ class Application_Model_Applicant
     }
 
     /**
-     * Deletes applicant
+     * Deletes address
      */
-    public function deleteApp($id, $name, $prename)
+    public function deleteAdress($id, $name, $prename)
     {
-        $this->resourceModel->deleteApp($id, $name, $prename);
+        $this->resourceModel->deleteAddress($id, $name, $prename);
     }
 
     /**
-     * Deletes all old applicants
-     */
-    public function deleteAll()
-    {
-        $this->resourceModel->deleteAll($this->getData());
-    }
-
-    /**
-     * Updates applicant
+     * Updates address
      */
     public function update($data)
     {
@@ -1286,7 +457,7 @@ class Application_Model_Applicant
     }
 
     /**
-     * Validates applicant information
+     * Validates address information
      */
     public function validate()
     {
@@ -1294,7 +465,7 @@ class Application_Model_Applicant
     }
 
     /**
-     * Sends mail to applicant
+     * Sends mail to person
      */
     public function contact()
     {
@@ -1302,7 +473,7 @@ class Application_Model_Applicant
     }
 
     /**
-     * Print applicant information
+     * Print address information
      */
     public function printDocument()
     {
@@ -1312,7 +483,7 @@ class Application_Model_Applicant
     /**
      * Sets array with data from database
      *
-     * @return Application_Model_Applicant
+     * @return Application_Model_Addresses
      */
     public function setListData()
     {
@@ -1365,27 +536,27 @@ class Application_Model_Applicant
     }
 
     /**
-     * Sets array with applicant data from database
+     * Sets array with address data from database
      *
      * @param $id
      * @param $name
      * @param $prename
      * @return mixed
      */
-    public function setApplicantData($id, $name, $prename)
+    public function setAddressData($id, $name, $prename)
     {
-        $this->applicant_data = $this->resourceModel->getAppData($id, $name, $prename);
+        $this->address_data = $this->resourceModel->getAddressData($id, $name, $prename);
         return $this;
     }
 
     /**
-     * Returns array with applicant data from database
+     * Returns array with address data from database
      *
      * @return array
      */
-    public function getApplicantData()
+    public function getAddressData()
     {
-        return $this->applicant_data;
+        return $this->address_data;
     }
 
 }

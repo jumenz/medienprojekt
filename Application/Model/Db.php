@@ -82,26 +82,13 @@ class Application_Model_Db
     }
 
     /**
-     * Deletes database job entry
-     *
-     * @param $id
-     */
-    public function deleteJob($id)
-    {
-        $sql = 'DELETE FROM `' . $this->table . '` WHERE `id` = "' . $id . '"';
-        $db_success = mysql_query($sql)
-            or die('Löschen der Daten fehlgeschlagen: ' . mysql_error());
-        mysql_close($this->db_link);
-    }
-
-    /**
-     * Deletes database applicant entry
+     * Deletes database address entry
      *
      * @param $id
      * @param $name
      * @param $prename
      */
-    public function deleteApp($id, $name, $prename)
+    public function deleteAddress($id, $name, $prename)
     {
         if ($id != 'Bewerber ID')
         {
@@ -111,17 +98,6 @@ class Application_Model_Db
         {
             $sql = 'DELETE FROM `' . $this->table . '` WHERE `name` = "' . $name . '" AND `prename` = "' . $prename . '"';
         }
-        $db_success = mysql_query($sql)
-            or die('Löschen der Daten fehlgeschlagen: ' . mysql_error());
-        mysql_close($this->db_link);
-    }
-
-    /**
-     * Deletes all old database entries
-     */
-    public function deleteAll()
-    {
-        $sql = 'DELETE FROM `' . $this->table . '` WHERE `permanent` = 0 AND `date_rejection` <> "0000-00-00" AND NOW() - INTERVAL ' . MONTH_TO_SAVE . ' MONTH > `date_rejection`';
         $db_success = mysql_query($sql)
             or die('Löschen der Daten fehlgeschlagen: ' . mysql_error());
         mysql_close($this->db_link);
@@ -146,36 +122,21 @@ class Application_Model_Db
     }
 
     /**
-     * Returns applicant data from database
+     * Returns address data from database
      *
      * @param $id
      * @param $name
      * @param $prename
      * @return array
      */
-    public function getAppData($id, $name, $prename)
+    public function getAddressData($id, $name, $prename)
     {
-        if ($id != 'Bewerber ID')
+        if ($id != 'ID')
         {
             $sql = 'SELECT * FROM `' . $this->table . '` WHERE `id` = "' . $id . '"';
         } else if ($name != "" && $prename != "") {
             $sql = 'SELECT * FROM `' . $this->table . '` WHERE `name` = "' . $name . '" AND `prename` = "' . $prename . '"';
         }
-        $db_success = mysql_query($sql)
-            or die('Laden der Daten fehlgeschlagen: ' . mysql_error());
-        $data = mysql_fetch_array($db_success, MYSQL_ASSOC);
-        return $data;
-    }
-
-    /**
-     * Returns job data from database
-     *
-     * @param $id
-     * @return array
-     */
-    public function getJobData($id)
-    {
-        $sql = 'SELECT * FROM `' . $this->table . '` WHERE `id` = "' . $id . '"';
         $db_success = mysql_query($sql)
             or die('Laden der Daten fehlgeschlagen: ' . mysql_error());
         $data = mysql_fetch_array($db_success, MYSQL_ASSOC);
@@ -202,4 +163,3 @@ class Application_Model_Db
         return sprintf("%04d-%02d-%02d", $d[2], $d[1], $d[0]);
     }
 }
-

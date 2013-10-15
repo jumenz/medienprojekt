@@ -5,25 +5,11 @@ require_once(ROOT . '/Head.phtml');
 <script type="text/javascript" src="/skin/javascript.js"></script>
 </head>
 <?php
-$data_Array = $model->getApplicantData();
+$data_Array = $model->getAddressData();
 $rows = count($data_Array);
 $cols = count($data_Array, COUNT_RECURSIVE)/$rows;
 //print_r($data_Array);
 ?>
-<body>
-<div class="main-container">
-    <header class="main-header"></header>
-    <?php if (!$edit || $data_Array['id'] != ''): ?>
-    <div class="main-content wrapper ">
-        <div class="row">
-            <section class="row">
-                <article class="mod-account mod-content mod-login col-6">
-                    <header class="sub-header">
-                        <h1>Bewerber bearbeiten</h1>
-                    </header>
-                    <div class="row">
-                    <!--<form name="new" action="../Controller/ApplicantController.php" method="post" onsubmit="return chkAppForm ()" onreset="return resetChk()">-->
-                    <form name="new" action="/application/Controller/ApplicantController.php" method="post" >
 
 <body>
 <div class="row">
@@ -32,7 +18,7 @@ $cols = count($data_Array, COUNT_RECURSIVE)/$rows;
         <header>
             <h1><?php echo $data_Array['prefix']; ?>&nbsp;<?php echo $data_Array['prename']; ?>&nbsp;<?php echo $data_Array['name']; ?>, ID <?php echo $data_Array['id']; ?></h1>
         </header>
-        <section class="content" id="applicant">
+        <section class="content" id="address">
             <article class="col-2 left-col">
                 <section class="col-content" id="contact">
                     <table id="person">
@@ -62,221 +48,19 @@ $cols = count($data_Array, COUNT_RECURSIVE)/$rows;
                             <td><?php echo $data_Array['mail']; ?></td>
                         </tr>
                         <tr>
-                            <td>Telefonnummer</td>
+                            <td>Festnetz</td>
                             <td><?php echo $data_Array['phone']; ?></td>
                         </tr>
-                    </table>
-                </section>
-                <section class="col-content" id="information">
-                    <table id="info">
-                        <colgroup width="200"></colgroup>
                         <tr>
-                            <td>Qualifikationen</td>
-                            <td><?php echo $data_Array['qualification']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Sprache</td>
-                            <td>
-                                <table>
-                                    <?php for ($i=1; $i<5; $i++): ?>
-                                        <?php if ($data_Array['language_' . $i] != ''): ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $data_Array['language_' . $i] ?>,
-                                                </td>
-                                                <td>
-                                                    <?php switch($data_Array['level_' . $i])
-                                                    {
-                                                        case 'm':
-                                                            echo 'Muttersprache';
-                                                            break;
-                                                        case 'v':
-                                                            echo 'verhandlungssicher';
-                                                            break;
-                                                        case 'f':
-                                                            echo 'fließend';
-                                                            break;
-                                                        case 'g':
-                                                            echo 'gut';
-                                                            break;
-                                                        case 'a':
-                                                            echo 'ausbaufähig';
-                                                            break;
-                                                    } ?>
-                                                </td>
-                                            </tr>
-                                        <?php endif ?>
-                                    <?php endfor ?>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Erfahrungen</td>
-                            <td><?php echo $data_Array['experiences']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Bewerbungsgrund</td>
-                            <td>
-                                <?php if ($data_Array['employment']==0) {echo 'Arbeit suchend '; } else {echo 'Arbeitgeberwechsel '; } ?>
-                                <?php switch($data_Array['reason'])
-                                {
-                                    case '0':
-                                        echo 'ohne Angabe';
-                                        break;
-                                    case '1':
-                                        echo 'nach Ausbildung';
-                                        break;
-                                    case '2':
-                                        echo 'nach Eltenzeit';
-                                        break;
-                                    case '3':
-                                        echo 'nach Kündigung';
-                                        break;
-                                    case '4':
-                                        echo 'wegen Umzug';
-                                        break;
-                                    case '5':
-                                        echo 'wegen Unzufriedenheit';
-                                        break;
-                                    case '6':
-                                        echo 'anderer Grund';
-                                        break;
-                                } ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Letzter Arbeitgeber</td>
-                            <td><?php $data_Array['last_employer']?></td>
-                        </tr>
-                        <tr>
-                            <td>Gehaltswunsch</td>
-                            <td>
-                                <?php if ($data_Array['salary'] != '0'): ?>
-                                <?php echo $data_Array['salary'] . ' €'; ?>
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mögl. Einstiegsdatum</td>
-                            <td>
-                                <?php if ($data_Array['date_joining'] != '0000-00-00'): ?>
-                                <?php echo $model->changeDate2German($data_Array['date_joining']); ?>
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Beworbene Stelle (ID)</td>
-                            <td><?php echo 'ID ' . $data_Array['job_id']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Initiativbewerbung</td>
-                            <td><?php if ($data_Array['proactive']) { echo 'Ja'; } else { echo 'Nein'; }; ?></td>
+                            <td>Handy</td>
+                            <td><?php echo $data_Array['mobile']; ?></td>
                         </tr>
                     </table>
                 </section>
             </article>
             <article class="col-2 right-col">
-                <section class="col-content" id="add-notes">
-                    <table id="notes">
-                        <colgroup width="200"></colgroup>
-                        <tr>
-                            <td>Vermittler</td>
-                            <td><?php echo $data_Array['mediator']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Vermittlungsgebühr</td>
-                            <td>
-                                <?php if ($data_Array['brokerage'] != '0'): ?>
-                                    <?php echo $data_Array['brokerage'] . ' €'; ?>
-                                <?php endif ?></td>
-                        </tr>
-                    </table>
-                </section>
-                <section class="col-content" id="email-dates">
-                    <table id="dates">
-                        <colgroup width="200"></colgroup>
-                        <tr>
-                            <td>Eingangsdatum</td>
-                            <td>
-                                <?php if ($data_Array['date_receipt'] != '0000-00-00'): ?>
-                                <?php echo $model->changeDate2German($data_Array['date_receipt']); ?>
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bestätigungsdatum</td>
-                            <td>
-                                <?php if ($data_Array['date_acknowledgement'] != '0000-00-00'): ?>
-                                <?php echo  $model->changeDate2German($data_Array['date_acknowledgement']); ?>
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Datum der Absage</td>
-                            <td>
-                                <?php if ($data_Array['date_rejection'] != '0000-00-00'): ?>
-                                <?php echo  $model->changeDate2German($data_Array['date_rejection']); ?>
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Datenspeicherung</td>
-                            <td><?php if ($data_Array['permanent']) { echo 'dauerhaft'; } else { echo '3 Monate'; }; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Positives</td>
-                            <td><?php echo $data_Array['pro']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Negatives</td>
-                            <td><?php echo $data_Array['contra']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Fazit</td>
-                            <td><?php echo $data_Array['result']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Offene Fragen</td>
-                            <td><?php echo $data_Array['questions']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Vorstellungsgespräch</td>
-                            <td>
-                                <?php if ($data_Array['date_interview'] != '0000-00-00'): ?>
-                                    <?php echo  $model->changeDate2German($data_Array['date_interview']); ?>&nbsp;<?php echo $data_Array['time_interview']; ?>
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Status der Bewerbung</td>
-                            <td>
-                                <?php switch ($data_Array['state'])
-                                {
-                                    case '1':
-                                        echo 'eingegangen';
-                                        break;
-                                    case '2':
-                                        echo 'bestätigt';
-                                        break;
-                                    case '3':
-                                        echo 'offene Fragen';
-                                        break;
-                                    case '4':
-                                        echo 'eingeladen';
-                                        break;
-                                    case '5':
-                                        echo 'zugesagt';
-                                        break;
-                                    case '6':
-                                        echo 'abgesagt';
-                                        break;
-                                } ?>
-                            </td>
-                        </tr>
-                    </table>
-                </section>
                 <section class="col-content buttons" id="buttons">
-                    <form name="update" action="/application/Controller/ApplicantController.php" method="post">
+                    <form name="update" action="/application/Controller/AddressesController.php" method="post">
                         <p>
                             <input name="cancel" type="button" value="Hauptmenü" onclick="window.location.href = '../../../index.phtml';" >
                             <input type="hidden" name="id" value="<?php echo $data_Array['id']; ?>"/>

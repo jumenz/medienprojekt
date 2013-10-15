@@ -38,13 +38,13 @@ require_once(ROOT.'/View/Head.phtml');
                                     <button type="submit" name="action" value="edit">Bewerber bearbeiten</button>
                                 </p>
                             </form>
-                            <form name="delete_app" action="/application/Controller/ApplicantController.php" method="post">
+                            <form name="delete" action="/application/Controller/ApplicantController.php" method="post">
                                 <p>
 
                                     <input type="text" name="id" value="Bewerber ID" onblur="if(this.value=='') this.value='Bewerber ID';" onfocus="if(this.value=='Bewerber ID') this.value='';"/>
                                     <input type="text" name="prename" value="Vorname" onblur="if(this.value=='') this.value='Vorname';" onfocus="if(this.value=='Vorname') this.value='';"/>
                                     <input type="text" name="name" value="Nachname" onblur="if(this.value=='') this.value='Nachname';" onfocus="if(this.value=='Nachname') this.value='';"/>
-                                    <button type="submit" name="action" value="delete_app">Bewerber löschen</button>
+                                    <button type="submit" name="action" value="delete">Bewerber löschen</button>
                                 </p>
                             </form>
                             <form name="delete_all" action="/application/Controller/ApplicantController.php" method="post" >

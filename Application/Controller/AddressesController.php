@@ -51,13 +51,9 @@ switch($action)
             ->setAddressData($model->getId(), $model->getName(), $model->getPrename());
         $action = 'new';
         break;
-    case 'delete_app';
+    case 'delete';
         $model->setData($_POST)
-            ->deleteApp($model->getId(), $model->getName(), $model->getPrename());
-        $action = 'back';
-        break;
-    case 'delete_all';
-        $model->deleteAll();
+            ->deleteAdress($model->getId(), $model->getName(), $model->getPrename());
         $action = 'back';
         break;
     case 'save';
