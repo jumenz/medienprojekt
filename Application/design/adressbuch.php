@@ -7,25 +7,13 @@ include_once('head.html');
 <!-- page specific settings -->
 <title>Este Frauen | Adressbuch</title>
 <meta name="robots" content="noindex, nofollow">
-<script type="text/javascript" src="/js/db.js"></script>
+<script type="text/javascript" src="../../js/db.js"></script>
 </head>
 <?php
-$isMember = true;
-$isAdmin = true;
-// $dataArray = $model->getListData();
+$isAdmin = false; // TODO test auf admin -> hier ändern für andere testansicht!
+$userId = ''; // TODO userid eintragen
+// $dataArray = $model->getListData(); // aufruf für db anbindung
 $dataArray = array(
-    '1' => array(
-        'name' => 'Schwartau',
-        'prename' => 'Ellen',
-        'date_birth' => '11.06.1992',
-        'street' => 'Musterstraße',
-        'nr' => '12',
-        'zipcode' => '21193',
-        'city' => 'Hamburg',
-        'mail' => 'ellen.schwartau@hotmail.de',
-        'mobile' => '0160-1234567',
-        'phone' => '040-1234567'
-    ),
     '0' => array(
         'name' => 'Menzel',
         'prename' => 'Julia',
@@ -37,11 +25,23 @@ $dataArray = array(
         'mail' => 'jumenz@web.de',
         'mobile' => '0160-1234567',
         'phone' => '040-1234567'
+    ),
+    '1' => array(
+        'name' => 'Schwartau',
+        'prename' => 'Ellen',
+        'date_birth' => '11.06.1992',
+        'street' => 'Musterstraße',
+        'nr' => '12',
+        'zipcode' => '21193',
+        'city' => 'Hamburg',
+        'mail' => 'ellen.schwartau@hotmail.de',
+        'mobile' => '0160-1234567',
+        'phone' => '040-1234567'
     )
 );
 $rows = count($dataArray);
 //$cols = count($data_Array, COUNT_RECURSIVE)/$rows;
-//print_r($data_Array);
+//print_r($dataArray);
 ?>
 </head>
 <body>
@@ -102,46 +102,127 @@ $rows = count($dataArray);
 <div id="main-content-small" class="content-layout-cell main-content main-content-small">
     <div class="outer">
         <div class="inner">
-            <div id="..." class="content-list">
+            <div id="addressbook" class="content-list">
                 <!--Contentbox One-Col Dropdown -->
                 <ul>
-                    <?php $abc = 'A'; ?>
+                    <?php if ($isAdmin) : ?>
+                        <li class="one-col">
+                            <div class="main-content-box box-borders-top bg clearfix toggle-item">
+                                <h2 class="box-title link toggle" >Neuer Eintrag</h2>
+                                <div class="box-body toggle-content box-borders-bottom" id="box-address-name" style="display: none;">
+                                    <p>
+                                        <!--new felder -->uehrsfliuherlf
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endif ?>
+                    <?php $abc = $rows>0 ? $dataArray[0]['name'][0] : '';?>
                     <!-- foreach addresses -->
-                    <?php for ($i=0; $i<$rows; $i++): ?>
-                    <?php $firstLetter = $dataArray[$i]['name'][0]; ?>
-                    <li class="one-col">
+                    <?php for ($i=0; $i<$rows; $i++) : ?>
+                        <?php $firstLetter = $dataArray[$i]['name'][0]; ?>
+                        <li id="<?php echo $abc==$firstLetter && $i!=0 ? '' : $firstLetter; ?>" class="one-col">
                             <div  class="main-content-box box-borders-top bg clearfix toggle-item">
                                 <h2 class="box-title link toggle" id="address-name" >
-                                    <a name="<?php echo $abc ?>">
-                                        <?php echo $dataArray[$i]['name']; ?>,&nbsp;<?php echo $dataArray[$i]['prename']; ?>
-                                    </a>
+                                    <?php echo $dataArray[$i]['name']; ?>,&nbsp;<?php echo $dataArray[$i]['prename']; ?>
                                 </h2>
                                 <a class="right box-link" href="mailto:<?php echo $dataArray[$i]['mail']; ?>">
                                     <span>E-Mail</span>
                                     <div class="forward-raquo menu-link right"></div>
                                 </a>
-                                <div class="box-body toggle-content box-borders-bottom" id="box-address-name" style="display: none;">
-                                    <p>
-                                            <?php echo $dataArray[$i]['prename']; ?>&nbsp;<?php echo $dataArray[$i]['name']; ?><br />
-                                            <?php echo $dataArray[$i]['street'] . ' '; if ($dataArray[$i]['nr'] != '0') { echo $dataArray[$i]['nr'];} ?><br />
-                                            <?php if ($dataArray[$i]['zipcode'] != '0') { echo $dataArray[$i]['zipcode']; } echo ' ' . $dataArray[$i]['city']; ?><br /><br />
-                                            <a href="mailto:<?php echo $dataArray[$i]['mail']; ?>">
-                                                <?php echo $dataArray[$i]['mail']; ?>
-                                            </a><br />
-                                            <?php echo $dataArray[$i]['mobile']; ?><br />
-                                            <?php echo $dataArray[$i]['phone']; ?><br />
-                                    </p>
-                                    <?php if ($isAdmin) :?>
-                                            <p>
-                                                <a href="../Controller/ApplicantController.php?action=detail&id=<?php echo $dataArray[$i]['id']; ?>">
-                                                    <span>Bearbeiten</span>
-                                                    <span class="forward-raquo menu-link right"></span>
-                                                </a>
-                                            </p>
-                                    <?php endif ?>
+                                <?php if ($dataArray[$i]['id'] == $userId || $isAdmin) : ?>
+                                <div class="box-body toggle-content box-borders-bottom" style="display: none;">
+                                    <form name="edit" action="../Controller/AddressesController.php" method="post" >
+                                        <fieldset id="contact">
+                                            <div class="form-item required clearfix">
+                                                <label for="name">Name</label>
+                                                <p class="input">
+                                                    <input type="text" id="name" class="input input-text required-entry" title="Name"
+                                                           name="name" maxlength="255" value="<?php echo $dataArray[$i]['name']; ?>">
+                                                </p>
+                                            </div>
+                                            <div class="form-item required clearfix">
+                                                <label for="prename">Vorname</label>
+                                                <p class="input">
+                                                    <input type="text" id="prename" class="input input-text required-entry" title="Vorname"
+                                                           name="prename" maxlength="255" value="<?php echo $dataArray[$i]['prename']; ?>">
+                                                </p>
+                                            </div>
+                                            <div class="form-item clearfix">
+                                                <label for="date-birth">Geburtsdatum</label>
+                                                <p class="input">
+                                                    <input type="text" id="date-birth" class="input input-text" title="Geburtsdatum"
+                                                           name="date_birth" maxlength="10" value="<?php echo $dataArray[$i]['date_birth']; ?>">
+                                                </p>
+                                            </div>
+                                            <div class="form-item clearfix">
+                                                <label for="street">Strasse, Nr</label>
+                                                <p class="input">
+                                                    <input type="text" id="street" class="input input-text left-text" title="Strasse" name="street"
+                                                           maxlength="255" value="<?php echo $dataArray[$i]['street']; ?>">
+                                                    <input type="text" id="nr" class="input input-text right-text" title="Hausnummer" name="nr"
+                                                           maxlength="6" value="<?php if ($dataArray[$i]['nr'] != '0') { echo $dataArray[$i]['nr']; } ?>">
+                                                </p>
+                                            </div>
+                                            <div class="form-item clearfix">
+                                                <label for="city">PLZ, Ort</label>
+                                                <p class="input">
+                                                    <input type="text" id="zipcode" class="input input-text left-text" title="Postleitzahl" name="zipcode"
+                                                           maxlength="5" value="<?php echo $dataArray[$i]['zipcode']; ?>">
+                                                    <input type="text" id="city" class="input input-text right-text" title="Stadt" name="city"
+                                                           maxlength="255" value="<?php echo $dataArray[$i]['city']; ?>">
+                                                </p>
+                                            </div>
+                                            <div class="form-item required clearfix">
+                                                <label for="mail">E-Mail</label>
+                                                <p class="input">
+                                                    <input type="text" id="mail" class="input input-text required-entry" title="E-Mail-Adresse"
+                                                           name="mail" maxlength="255" value="<?php echo $dataArray[$i]['mail']; ?>">
+                                                </p>
+                                            </div>
+                                            <div class="form-item">
+                                                <label for="phone">Festnetznummer (040-123456)</label>
+                                                <p class="input">
+                                                    <input type="text" id="phone" class="input input-text" title="Festnetznummer" name="phone"
+                                                           maxlength="32" value="<?php echo $dataArray[$i]['phone']; ?>">
+                                                </p>
+                                            </div>
+                                            <div class="form-item">
+                                                <label for="phone">Handynummer (0160-123456)</label>
+                                                <p class="input">
+                                                    <input type="text" id="mobile" class="input input-text" title="Handynummer" name="mobile"
+                                                           maxlength="32" value="<?php echo $dataArray[$i]['mobile']; ?>">
+                                                </p>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset id="buttons">
+                                            <div class="form-submit clearfix">
+                                                <p>
+                                                    <input name="cancel" type="button" value="Abbrechen " onclick="window.location.href = 'adressbuch.php';" >
+                                                    <input name="reset" type="reset" value="Zurücksetzen">
+                                                    <button type="submit" name="action" value="update">Aktualisieren</button>
+                                                </p>
+                                            </div>
+                                        </fieldset>
+                                    </form>
                                 </div>
+                                <?php else : ?>
+                                <div class="box-body toggle-content box-borders-bottom" style="display: none;">
+                                    <p>
+                                        <?php echo $dataArray[$i]['prename']; ?>&nbsp;<?php echo $dataArray[$i]['name']; ?><br />
+                                        <?php echo $dataArray[$i]['street'] . ' '; if ($dataArray[$i]['nr'] != '0') { echo $dataArray[$i]['nr'];} ?><br />
+                                        <?php if ($dataArray[$i]['zipcode'] != '0') { echo $dataArray[$i]['zipcode']; } echo ' ' . $dataArray[$i]['city']; ?><br /><br />
+                                        <a href="mailto:<?php echo $dataArray[$i]['mail']; ?>">
+                                            <?php echo $dataArray[$i]['mail']; ?>
+                                        </a><br />
+                                        <?php echo $dataArray[$i]['mobile']; ?><br />
+                                        <?php echo $dataArray[$i]['phone']; ?><br />
+                                    </p>
+                                </div>
+                                <?php endif ?>
                             </div>
-                    </li>
+                        </li>
+                        <?php $abc = $abc!=$firstLetter ? $firstLetter : $abc;?>
                     <?php endfor ?>
                     <!-- end foreach addresses -->
                 </ul>
@@ -157,7 +238,7 @@ $rows = count($dataArray);
 <!-- end Content -->
 </div>
 <!-- footer -->
-<?php include_once(ROOT . 'footer.html'); ?>
+<?php include_once('footer.html'); ?>
 </body>
 <script type="text/javascript">
     $(document).ready(function() {

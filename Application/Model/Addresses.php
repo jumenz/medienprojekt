@@ -126,7 +126,7 @@ class Application_Model_Addresses
             'prefix' => ucfirst($this->getPrefix()),
             'name' => ucfirst($this->getName()),
             'prename' => ucfirst($this->getPrename()),
-            'date_birth' => $this->getDateBirth(),
+            'date_birth' => changeDate2German($this->getDateBirth()),
             'street' => ucfirst($this->getStreet()),
             'nr' => $this->getNr(),
             'zipcode' => $this->getZipcode(),
