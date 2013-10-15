@@ -1,5 +1,7 @@
+.footer-space-bottom {
+	margin-bottom: 1em;
+}
 .footer {
-	font-family: Verdana;
 	font-size:	small;
 	background-color: #666666;
 	color: white;
@@ -12,31 +14,52 @@
 	width: 90%;
 	text-align: center;
 }
+.footer a {
+	color: #FFFFFF;
+}
+.footer a:hover {
+	color: #CED1D1;
+}
 .footer-heading {
 	font-size: medium;
+	font-weight: bold;
+	display: block;
 }
-.footer-login, .footer-adress, .footer-shortlinks {
+.footer-info {
+	display: inline-block;
+	width: 100%;
+}
+
+.footer li {
 	margin-top: 20px;
 	margin-bottom: 20px;
-}
-.footer-login {
-	width: 20%;
-	height: 100%;
+	width: 15%;
+	padding: 0% 2.5%;
 	display: inline-block;
 	text-align: left;
 }
-.footer-login form {
+
+.footer form {
 	margin: 0px;
 }
-.footer-adress {
-	width: 20%;
-	height: 100%;
-	display: inline-block;
-	text-align: left;
+.footer-nobreak {
+	display: inline;
 }
-.footer-shortlinks {
-	width: 20%;
-	height: 100%;
-	display: inline-block;
-	text-align: left;
+
+/* ------------------ media specific adaption ------------------------ */
+
+@media (max-width: 1000px) {
+	.footer li {
+		width: 25%;
+	}
+}
+
+@media (max-width: 600px) {
+	.footer li {
+		width: 95%;
+	}
+	.footer-info {
+		display: inline;
+		padding-right: 2%;
+	}
 }
