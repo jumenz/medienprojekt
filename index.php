@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0; URL=app/design/home.php">
+<meta http-equiv="refresh" content="0; URL=Application/design/home.php">
