@@ -1,0 +1,86 @@
+<?php
+define('ROOT', dirname(dirname(__FILE__)));
+require_once(ROOT . '/Head.phtml');
+?>
+<script type="text/javascript" src="/skin/javascript.js"></script>
+</head>
+<?php
+$data_Array = $model->getListData();
+$rows = count($data_Array);
+//$cols = count($data_Array, COUNT_RECURSIVE)/$rows;
+//print_r($data_Array);
+?>
+<body>
+<div class="main-container">
+    <header class="main-header"></header>
+    <div class="main-content list ">
+        <div class="row">
+            <section class="row">
+                <article class="mod-list col-7">
+                    <div class="row push-bottom">
+                        <section class="content" id="app_list">
+                            <header>
+                                <h1>Bewerberliste</h1>
+                            </header>
+                            <p>
+                                <table class="list">
+                                    <tr>
+                                        <th>ID<a href="../Controller/ApplicantController.php?action=sort&sort=id"></a>&nbsp;+</th>
+                                        <th>Vorname</th>
+                                        <th>Nachname<a href="../Controller/ApplicantController.php?action=sort&sort=name">&nbsp;+</a></th>
+                                        <th>E-Mail</th>
+                                        <th>Telefon</th>
+                                        <th>Adresse</th>
+                                        <th>Bewerbungsstatus<a href="../Controller/ApplicantController.php?action=sort&sort=state">&nbsp;+</a></th>
+                                        <th>Job ID<a href="../Controller/ApplicantController.php?action=sort&sort=job_id">&nbsp;+</a></th>
+                                        <th>Details</th>
+                                    </tr>
+                                    <?php for ($i=0; $i<$rows; $i++): ?>
+                                        <tr>
+                                            <td><?php echo $data_Array[$i]['id']; ?></td>
+                                            <td><?php echo $data_Array[$i]['prename']; ?></td>
+                                            <td><?php echo $data_Array[$i]['name']; ?></td>
+                                            <td><?php echo $data_Array[$i]['mail']; ?></td>
+                                            <td><?php echo $data_Array[$i]['phone']; ?></td>
+                                            <td><?php echo $data_Array[$i]['street'] . ' '; if ($data_Array[$i]['nr'] != '0') { echo $data_Array[$i]['nr'];} ?>
+                                                <br /><?php if ($data_Array[$i]['zipcode'] != '0') { echo $data_Array[$i]['zipcode']; } echo ' ' . $data_Array[$i]['city']; ?></td>
+                                            <td><?php switch($data_Array[$i]['state'])
+                                                {
+                                                    case '1':
+                                                        echo 'Eingegangen';
+                                                        break;
+                                                    case '2':
+                                                        echo 'Bestätigt';
+                                                        break;
+                                                    case '3':
+                                                        echo 'Offene Fragen';
+                                                        break;
+                                                    case '4':
+                                                        echo 'Eingeladen';
+                                                        break;
+                                                    case '5':
+                                                        echo 'Zugesagt';
+                                                        break;
+                                                    case '6':
+                                                        echo 'Abgesagt';
+                                                        break;
+                                                } ?></td>
+                                            <td><?php echo $data_Array[$i]['job_id']; ?></td>
+                                            <td>&nbsp;&nbsp;<a href="../Controller/ApplicantController.php?action=detail&id=<?php echo $data_Array[$i]['id']; ?>">>>></a></td>
+                                        </tr>
+                                    <?php endfor ?>
+                                </table>
+                            </p>
+                        </section>
+                        <section class="col-content buttons" id="buttons">
+                            <form name="back">
+                                <p><input name="cancel" type="button" value="Hauptmenü" onclick="window.location.href = '../../../index.phtml';" ></p>
+                            </form>
+                        </section>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
+</div>
+</body>

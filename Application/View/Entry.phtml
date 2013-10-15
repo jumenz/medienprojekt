@@ -1,0 +1,96 @@
+<?php
+define('ROOT', dirname(dirname(__FILE__)));
+require_once(ROOT.'/View/Head.phtml');
+?>
+<body>
+<div class="main-container">
+    <header class="main-header"></header>
+    <div class="main-content wrapper ">
+        <div class="row">
+            <section class="row">
+                <article class="mod-account mod-content mod-login col-6">
+                    <div class="row push-bottom">
+                        <section class="upper">
+                            <header class="sub-header">
+                                <h1>Bewerber</h1>
+                            </header>
+                            <form name="add_list" action="/application/Controller/ApplicantController.php" method="post" >
+                                <p>
+                                    <button type="submit" name="action" value="new">Bewerber hinzufügen</button>
+                                </p>
+                                <p>
+                                    <button type="submit" name="action" value="list">Bewerberliste anzeigen</button>
+                                </p>
+                            </form>
+                            <form name="detail" action="/application/Controller/ApplicantController.php" method="post">
+                                <p>
+                                    <input type="text" name="id" value="Bewerber ID" onblur="if(this.value=='') this.value='Bewerber ID';" onfocus="if(this.value=='Bewerber ID') this.value='';"/>
+                                    <input type="text" name="prename" value="Vorname" onblur="if(this.value=='') this.value='Vorname';" onfocus="if(this.value=='Vorname') this.value='';"/>
+                                    <input type="text" name="name" value="Nachname" onblur="if(this.value=='') this.value='Nachname';" onfocus="if(this.value=='Nachname') this.value='';"/>
+                                    <button type="submit" name="action" value="detail">Bewerber anzeigen</button>
+                                </p>
+                            </form>
+                            <form name="update" action="/application/Controller/ApplicantController.php" method="post">
+                                <p>
+                                    <input type="text" name="id" value="Bewerber ID" onblur="if(this.value=='') this.value='Bewerber ID';" onfocus="if(this.value=='Bewerber ID') this.value='';"/>
+                                    <input type="text" name="prename" value="Vorname" onblur="if(this.value=='') this.value='Vorname';" onfocus="if(this.value=='Vorname') this.value='';"/>
+                                    <input type="text" name="name" value="Nachname" onblur="if(this.value=='') this.value='Nachname';" onfocus="if(this.value=='Nachname') this.value='';"/>
+                                    <button type="submit" name="action" value="edit">Bewerber bearbeiten</button>
+                                </p>
+                            </form>
+                            <form name="delete_app" action="/application/Controller/ApplicantController.php" method="post">
+                                <p>
+
+                                    <input type="text" name="id" value="Bewerber ID" onblur="if(this.value=='') this.value='Bewerber ID';" onfocus="if(this.value=='Bewerber ID') this.value='';"/>
+                                    <input type="text" name="prename" value="Vorname" onblur="if(this.value=='') this.value='Vorname';" onfocus="if(this.value=='Vorname') this.value='';"/>
+                                    <input type="text" name="name" value="Nachname" onblur="if(this.value=='') this.value='Nachname';" onfocus="if(this.value=='Nachname') this.value='';"/>
+                                    <button type="submit" name="action" value="delete_app">Bewerber löschen</button>
+                                </p>
+                            </form>
+                            <form name="delete_all" action="/application/Controller/ApplicantController.php" method="post" >
+                                <p>
+                                    <button type="submit" name="action" value="delete_all">Alte Bewerber löschen</button>
+                                </p>
+                            </form>
+                        </section>
+                        <section>
+                            <head>
+                                <h1 class="sub-header">Stellenangebote</h1>
+                            </head>
+                            <section class="content" id="job">
+                                <form name="add_list" action="/application/Controller/JobController.php" method="post" >
+
+                                    <p>
+                                        <button type="submit" name="action" value="new">Angebot erstellen</button>
+                                    </p>
+                                    <p>
+                                        <button type="submit" name="action" value="list">Angebotsliste anzeigen</button>
+                                    </p>
+                                </form>
+                                <form name="detail" action="/application/Controller/JobController.php" method="post">
+                                    <p>
+                                        <input type="text" name="id" value="Stellen ID" onblur="if(this.value=='') this.value='Stellen ID';" onfocus="if(this.value=='Stellen ID') this.value='';"/>
+                                        <button type="submit" name="action" value="detail">Angebot anzeigen</button>
+                                    </p>
+                                </form>
+                                <form name="update" action="/application/Controller/JobController.php" method="post">
+                                    <p>
+                                        <input type="text" name="id" value="Stellen ID" onblur="if(this.value=='') this.value='Stellen ID';" onfocus="if(this.value=='Stellen ID') this.value='';"/>
+                                        <button type="submit" name="action" value="edit">Angebot bearbeiten</button>
+                                    </p>
+                                </form>
+                                <form name="delete" action="/application/Controller/JobController.php" method="post">
+                                    <p>
+                                        <input type="text" name="id" value="Stellen ID" onblur="if(this.value=='') this.value='Stellen ID';" onfocus="if(this.value=='Stellen ID') this.value='';"/>
+                                        <button type="submit" name="action" value="delete">Angebot löschen</button>
+                                    </p>
+                                </form>
+                            </section>
+                        </section>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
+</div>
+</body>

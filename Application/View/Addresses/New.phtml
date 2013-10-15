@@ -1,0 +1,336 @@
+    <?php
+    define('ROOT', dirname(dirname(__FILE__)));
+    require_once(ROOT . '/Head.phtml');
+    ?>
+    <script type="text/javascript" src="/skin/javascript.js"></script>
+</head>
+    <?php
+    $edit = false;
+    $data_Array = $model->getApplicantData();
+    if (isset($data_Array))
+    {
+//        print_r($data_Array);
+        $edit = true;
+    }
+    ?>
+<body>
+    <div class="main-container">
+    <header class="main-header"></header>
+    <?php if (!$edit || $data_Array['id'] != ''): ?>
+        <div class="main-content wrapper ">
+            <div class="row">
+                <section class="row">
+                    <article class="mod-account mod-content mod-login col-6">
+                    <?php if ($edit) : ?>
+                        <header class="sub-header">
+                            <h1>Bewerber bearbeiten</h1>
+                        </header>
+                    <?php else : ?>
+                        <header class="sub-header">
+                            <h1>Bewerber hinzufügen</h1>
+                        </header>
+                    <?php endif ?>
+                        <div class="row">
+                                <!--<form name="new" action="../Controller/ApplicantController.php" method="post" onsubmit="return chkAppForm ()" onreset="return resetChk()">-->
+                            <form name="new" action="/application/Controller/ApplicantController.php" method="post" >
+                                <article class="mod content col-3 push-right">
+                                    <fieldset id="contact">
+                                        <header class="sub-header">
+                                            <h3>Kontakt</h3>
+                                        </header>
+                                        <div class="form-item required clearfix">
+                                            <label for="prefix">Anrede</label>
+                                            <p class="input" id="prefix">
+                                                <input type="radio" class="radio required-entry" name="prefix" value="Frau" lable="Frau" <?php if ($edit) { if ($data_Array['prefix']=='Frau') {echo 'checked="checked"'; }} ?>>Frau
+                                                <input type="radio" class="radio required-entry" name="prefix" value="Herr" <?php if ($edit) { if ($data_Array['prefix']=='Herr') {echo 'checked="checked"'; }} ?>>Herr
+                                            </p>
+                                        </div>
+                                        <div class="form-item required clearfix">
+                                            <label for="name">Name</label>
+                                            <p class="input">
+                                                <input type="text" id="name" class="input input-text required-entry" title="Name"
+                                                       name="name" maxlength="255" value="<?php if ($edit) { echo $data_Array['name']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item required clearfix">
+                                            <label for="prename">Vorname</label>
+                                            <p class="input">
+                                                <input type="text" id="prename" class="input input-text required-entry" title="Vorname"
+                                                       name="prename" maxlength="255" value="<?php if ($edit) { echo $data_Array['prename']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="date-birth">Geburtsdatum</label>
+                                            <p class="input">
+                                                <input type="text" id="date-birth" class="input input-text" title="Geburtsdatum"
+                                                       name="date_birth" maxlength="10" value="<?php if ($edit && $data_Array['date_birth'] != '0000-00-00') { echo $model->changeDate2German($data_Array['date_birth']); } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="street">Strasse, Nr</label>
+                                            <p class="input">
+                                                <input type="text" id="street" class="input input-text left-text" title="Strasse" name="street"
+                                                       maxlength="255" value="<?php if ($edit) { echo $data_Array['street']; } ?>">
+                                                <input type="text" id="nr" class="input input-text right-text" title="Hausnummer" name="nr"
+                                                       maxlength="6" value="<?php if ($edit && $data_Array['nr'] != '0') { echo $data_Array['nr']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="city">PLZ, Ort</label>
+                                            <p class="input">
+                                                <input type="text" id="zipcode" class="input input-text left-text" title="Postleitzahl" name="zipcode"
+                                                       maxlength="5" value="<?php if ($edit && $data_Array['zipcode']) { echo $data_Array['zipcode']; } ?>">
+                                                <input type="text" id="city" class="input input-text right-text" title="Stadt" name="city"
+                                                       maxlength="255" value="<?php if ($edit) { echo $data_Array['city']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item required clearfix">
+                                            <label for="mail">E-Mail</label>
+                                            <p class="input">
+                                                <input type="text" id="mail" class="input input-text required-entry" title="E-Mail-Adresse"
+                                                       name="mail" maxlength="255" value="<?php if ($edit) { echo $data_Array['mail']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item">
+                                            <label for="phone">Telefonnummer (040-123456)</label>
+                                            <p class="input">
+                                                <input type="text" id="phone" class="input input-text" title="Telefonnummer" name="phone"
+                                                       maxlength="32" value="<?php if ($edit) { echo $data_Array['phone']; } ?>">
+                                            </p>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset id="info">
+                                        <header class="sub-header">
+                                            <h3>Referenzen</h3>
+                                        </header>
+                                        <div class="form-item clearfix">
+                                            <label for="qualification">Qualifikationen</label>
+                                            <p class="input">
+                                                <textarea id="qualification" class="input input-text" title="Qualifikationen" name="qualification"
+                                                          cols="30" rows="3" wrap="soft"><?php if ($edit) { echo $data_Array['qualification']; } ?></textarea>
+                                            </p>
+                                        </div>
+                                        <?php for ($i=1; $i<5; $i++): ?>
+                                        <div class="form-item clearfix">
+                                            <label for="language"><?php echo $i ?>. Sprache</label>
+                                            <p class="input">
+                                                <input type="text" id="language_<?php echo $i ?>" class="input input-text" title="Sprache"
+                                                       name="language_<?php echo $i ?>" value="<?php if ($edit) { echo $data_Array['language_' . $i]; } ?>">
+                                            </p>
+                                            <label for="language">&nbsp;</label>
+                                            <p class="input">
+                                                <input type="radio" class="radio" name="level_<?php echo $i ?>" value="m" <?php if ($edit) { if ($data_Array['level_' . $i]=='m') {echo 'checked="checked"'; }} ?>>m</input>
+                                                <input type="radio" class="radio" name="level_<?php echo $i ?>" value="v" <?php if ($edit) { if ($data_Array['level_' . $i]=='v') {echo 'checked="checked"'; }} ?>>v</input>
+                                                <input type="radio" class="radio" name="level_<?php echo $i ?>" value="f" <?php if ($edit) { if ($data_Array['level_' . $i]=='f') {echo 'checked="checked"'; }} ?>>f</input>
+                                                <input type="radio" class="radio" name="level_<?php echo $i ?>" value="g" <?php if ($edit) { if ($data_Array['level_' . $i]=='g') {echo 'checked="checked"'; }} ?>>g</input>
+                                                <input type="radio" class="radio" name="level_<?php echo $i ?>" value="a" <?php if ($edit) { if ($data_Array['level_' . $i]=='a') {echo 'checked="checked"'; }} ?>>a</input>
+                                            </p>
+                                        </div>
+                                        <?php if ($i == 4){ echo '
+                                            <div class="form-item clearfix">
+                                                <p class="input">m = Muttersprache, v = verhandlungssicher, f = fließend, g = gut, a = ausbaufähig</p>
+                                            </div>'; }
+                                        ?>
+                                        <?php endfor ?>
+                                        <div class="form-item clearfix">
+                                            <label for="experiences">Erfahrungen</label>
+                                            <p class="input">
+                                                <textarea id="experiences" class="input input-text" title="Erfahrungen" name="experiences"
+                                                          cols="30" rows="3" wrap="soft"><?php if ($edit) { echo $data_Array['experiences']; } ?></textarea>
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="reason">Bewerbungsgrund</label>
+                                            <p class="input">
+                                                <select id="reasonID" name="reason" >
+                                                    <option value="0" <?php if ($edit) { if ($data_Array['reason']==0) {echo 'selected="selected"'; }} ?>>Bitte auswählen:</option>
+                                                    <option value="1" <?php if ($edit) { if ($data_Array['reason']==1) {echo 'selected="selected"'; }} ?>>nach Ausbildung</option>
+                                                    <option value="2" <?php if ($edit) { if ($data_Array['reason']==2) {echo 'selected="selected"'; }} ?>>nach Eltenzeit</option>
+                                                    <option value="3" <?php if ($edit) { if ($data_Array['reason']==3) {echo 'selected="selected"'; }} ?>>nach Kündigung</option>
+                                                    <option value="4" <?php if ($edit) { if ($data_Array['reason']==4) {echo 'selected="selected"'; }} ?>>wegen Umzug</option>
+                                                    <option value="5" <?php if ($edit) { if ($data_Array['reason']==5) {echo 'selected="selected"'; }} ?>>wegen Unzufriedenheit</option>
+                                                    <option value="6" <?php if ($edit) { if ($data_Array['reason']==6) {echo 'selected="selected"'; }} ?>>anderer Grund</option>
+                                                </select>
+                                                <input type="radio" class="radio" name="employment" value="0"<?php if ($edit) { if ($data_Array['employment']==0) {echo 'checked="checked"'; }} ?>>Suche</input>
+                                                <input type="radio" class="radio" name="employment" value="1"<?php if ($edit) { if ($data_Array['employment']==1) {echo 'checked="checked"'; }} ?>>Wechsel</input><br>
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="last-employer">Letzter Arbeitgeber</label>
+                                            <p class="input">
+                                                <input type="text" id="last-employer" class="input input-text" title="Letzter Arbeitgeber"
+                                                       name="last_employer" maxlength="255" value="<?php if ($edit) { echo $data_Array['last_employer']; } ?>">
+                                            </p>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset id="buttons">
+                                        <div class="form-submit clearfix">
+                                            <p>
+                                                <input name="cancel" type="button" value="Abbrechen " onclick="window.location.href = '../../../index.phtml';" >
+                                                <?php if (!$edit): ?>
+                                                    <input name="reset" type="reset" value="Zurücksetzen">
+                                                <?php endif ?>
+                                                <button type="submit" name="action" value="<?php if ($edit) { echo 'update'; } else { echo 'save'; } ?>"><?php if ($edit) { echo 'Aktualisieren'; } else { echo 'Speichern'; } ?></button>
+                                            </p>
+                                        </div>
+                                    </fieldset>
+                                </article>
+                                <article class="mod content col-3 push-left">
+                                    <fieldset id="additional">
+                                        <header class="sub-header">
+                                            <h3>Weitere Informationen</h3>
+                                        </header>
+                                        <div class="form-item clearfix">
+                                            <label for="salary">Gehaltswunsch €/Jahr</label>
+                                            <p class="input">
+                                                <input type="text" id="salary" class="input input-text" title="Gehaltswunsch" name="salary"
+                                                       maxlength="8" value="<?php if ($edit && $data_Array['salary'] != '0') { echo $data_Array['salary']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="date-joining">Mögl. Einstiegsdatum</label>
+                                            <p class="input">
+                                                <input type="text" id="date-joining" class="input input-text" title="Mögl. Einstiegsdatum"
+                                                       name="date_joining" maxlength="10" value="<?php if ($edit && $data_Array['date_joining'] != '0000-00-00') { echo $model->changeDate2German($data_Array['date_joining']); } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="job">Beworbene Stelle (ID)</label>
+                                            <p class="input">
+                                                <input type="text" id="job" class="input input-text" title="Beworbene Stelle" name="job_id"
+                                                       maxlength="6" value="<?php if ($edit) { echo $data_Array['job_id']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="proactive">Initiativbewerbung</label>
+                                            <p class="input">
+                                                <input class="checkbox" type="checkbox" name="proactive" value="proactive"><br>
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="mediator">Vermittler</label>
+                                            <p class="input">
+                                                <input type="text" id="mediator" class="input input-text" title="Vermittler" name="mediator"
+                                                       maxlength="255" value="<?php if ($edit) { echo $data_Array['mediator']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="brokerage">Vermittlungsgebühr in €</label>
+                                            <p class="input">
+                                                <input type="text" id="brokerage" class="input input-text" title="Vermittlungsgebühr"
+                                                       name="brokerage" value="<?php if ($edit && $data_Array['brokerage'] != '0') { echo $data_Array['brokerage']; } ?>">
+                                            </p>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset id="dates">
+                                        <header class="sub-header">
+                                            <h3>Anmerkungen</h3>
+                                        </header>
+                                        <div class="form-item clearfix">
+                                            <label for="date-receipt">Eingangsdatum</label>
+                                            <p class="input">
+                                                <input type="text" id="date-receipt" class="input input-text required-entry" title="Eingangsdatum"
+                                                       name="date_receipt" maxlength="10" value="<?php if ($edit && $data_Array['date_receipt'] != '0000-00-00') { echo $model->changeDate2German($data_Array['date_receipt']); } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="date-acknowledgement">Bestätigungsdatum</label>
+                                            <p class="input">
+                                                <input type="text" id="date-acknowledgement" class="input input-text" title="Eingangsdatum"
+                                                       name="date_acknowledgement" maxlength="10" value="<?php if ($edit && $data_Array['date_acknowledgement'] != '0000-00-00') { echo $model->changeDate2German($data_Array['date_acknowledgement']); } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="date-rejection">Datum der Absage</label>
+                                            <p class="input">
+                                                <input type="text" id="date-rejection" class="input input-text" title="Absagedatum"
+                                                       name="date_rejection" maxlength="10" value="<?php if ($edit && $data_Array['date_rejection'] != '0000-00-00') { echo $model->changeDate2German($data_Array['date_rejection']); } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="permanent">Dauerhaft speichern</label>
+                                            <p class="input">
+                                                <input class="checkbox" type="checkbox" name="permanent" value="save" <?php if ($edit) { if ($data_Array['permanent']==1) {echo 'checked="checked"'; }} ?> ><br>
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="pro">Positives</label>
+                                            <p class="input">
+                                                <textarea id="pro" class="input input-text" title="Positives" name="pro" cols="30" rows="3"
+                                                          wrap="soft"><?php if ($edit) { echo $data_Array['pro']; } ?></textarea>
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="contra">Negatives</label>
+                                            <p class="input">
+                                                <textarea id="contra" class="input input-text" title="Negatives" name="contra" cols="30"
+                                                          rows="3" wrap="soft"><?php if ($edit) { echo $data_Array['contra']; } ?></textarea>
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="result">Fazit</label>
+                                            <p class="input">
+                                                <textarea id="result" class="input input-text" title="Fazit" name="result" cols="30" rows="3"
+                                                          wrap="soft"><?php if ($edit) { echo $data_Array['result']; } ?></textarea>
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="questions">Offene Fragen</label>
+                                            <p class="input">
+                                                <textarea id="questions" class="input input-text" title="Offene Fragen" name="questions" cols="30"
+                                                          rows="3" wrap="soft"><?php if ($edit) { echo $data_Array['questions']; } ?></textarea>
+                                            </p>
+                                        </div>
+                                        <div class="form-item clearfix">
+                                            <label for="date-interview">Vorstellungsgespräch</label>
+                                            <p class="input">
+                                                <input type="text" id="date-interview" class="input input-text left-text" title="Datum" name="date_interview"
+                                                       maxlength="10" value="<?php if ($edit && $data_Array['date_interview'] != '0000-00-00') { echo $model->changeDate2German($data_Array['date_interview']); } ?>">
+                                                <input type="text" id="time-interview" class="input input-text right-text" title="Uhrzeit" name="time_interview"
+                                                       maxlength="8" value="<?php if ($edit && $data_Array['time_interview'] != '00:00:00') { echo $data_Array['time_interview']; } ?>">
+                                            </p>
+                                        </div>
+                                        <div class="form-item required clearfix">
+                                            <label for="state">Status der Bewerbung</label>
+                                            <p class="input">
+                                                <select id ="stateID" name="state" >
+                                                    <option value="0" <?php if ($edit) { if ($data_Array['state']==0) {echo 'selected="selected"'; }} ?>>Bitte auswählen:</option>
+                                                    <option value="1" <?php if ($edit) { if ($data_Array['state']==1) {echo 'selected="selected"'; }} ?>>Eingegangen</option>
+                                                    <option value="2" <?php if ($edit) { if ($data_Array['state']==2) {echo 'selected="selected"'; }} ?>>Bestätigt</option>
+                                                    <option value="3" <?php if ($edit) { if ($data_Array['state']==3) {echo 'selected="selected"'; }} ?>>Offene Fragen</option>
+                                                    <option value="4" <?php if ($edit) { if ($data_Array['state']==4) {echo 'selected="selected"'; }} ?>>Eingeladen</option>
+                                                    <option value="5" <?php if ($edit) { if ($data_Array['state']==5) {echo 'selected="selected"'; }} ?>>Zugesagt</option>
+                                                    <option value="6" <?php if ($edit) { if ($data_Array['state']==6) {echo 'selected="selected"'; }} ?>>Abgesagt</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <hr />
+                                        <p>* Plichtfelder</p>
+                                    </fieldset>
+                                </article>
+                            </form>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </div>
+    <?php else : ?>
+        <div class="main-content wrapper ">
+            <div class="row">
+                <section class="row">
+                    <article class="mod-account mod-content mod-login mod-error col-6">
+                        <header>
+                            <h1 class="error">Bewerber nicht gefunden!</h1>
+                        </header>
+                        <div class="row push-bottom buttons">
+                            <form name="error" >
+                                <p><input name="cancel" type="button" value="Hauptmenü " onclick="window.location.href = '../../../index.phtml';" ></p>
+                            </form>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </div>
+    <?php endif ?>
+    </div>
+</body>
