@@ -8,7 +8,6 @@
 			Lesen Sie mehr über Spielberichte der Frauen des SV Este 06/70.
 		">
 		<link rel="stylesheet" type="text/css" href="../../css/report.css"/>
-		<script type="text/javascript" src="../../js/display.js"></script>
 	</head>
 	<body>
 		<!------------------------ header ----------------------------->
@@ -178,7 +177,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                        <!-- end Content Box -->
+                                        <!-- end Comment Box -->
                                         <ul>
 											<?php for($i=1; $i<=12; $i++) : ?>					<!-- TODO anders befüllen -->
                                             <li class="one-col">
@@ -245,7 +244,7 @@
 																	</div>
 															</div>
 														<div>
-														<!-- end Content Box -->
+														<!-- end Comment Box -->
 													</div>
                                                 </div>
                                                 <!-- reports -->

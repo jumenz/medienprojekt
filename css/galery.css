@@ -1,23 +1,8 @@
-.chronic {				/* ersetzen durch Julias */
-	color: black;
-	width: 10%;
-	height: 100%;
-	background-color: F5F3F5;
-	display: inline-block;
-}
-
-/* ------------- Anordnung der Elemente ----------------------------- */
-.galery-preview {
-	width: 80%;
-	display: inline-block;
-	margin-left: 5%;
-}
-
 /* ------------- Buttons und navigation ----------------------------- */
 
-.button-prev {
+.button_prev {
 	display: inline-block;
-	background-image: url("../data/buttons/button-previous-wb.png");
+	background-image: url("../../data/buttons/button_previous_wb.png");
 	background-repeat: no-repeat;
 	height:	20px;
 	width: 20px;
@@ -29,9 +14,9 @@
 	-moz-transition: all 1s ease;
 	transition: all 1s ease;
 }
-.button-next {
+.button_next {
 	display: inline-block;
-	background-image: url("../data/buttons/button-next-wb.png");
+	background-image: url("../../data/buttons/button_next_wb.png");
 	background-repeat: no-repeat;
 	height:	20px;
 	width: 20px;
@@ -43,9 +28,9 @@
 	-moz-transition: all 1s ease;
 	transition: all 1s ease;
 }
-.button-close {
+.button_close {
 	display: inline-block;
-	background-image: url("../data/buttons/button-close.png");
+	background-image: url("../../data/buttons/button_close.png");
 	background-repeat: no-repeat;
 	height: 30px;
 	width: 30px;
@@ -54,32 +39,32 @@
 	top: -15px;
 }
 
-#galery-preview--full .button-next {
+#galery_preview--full .button_next {
 	right: 4%;
 	top: 50%;
 }
-#galery-preview--full .button-prev {
+#galery_preview--full .button_prev {
 	left: 4%;
 	top: 50%;
 }
 
 /* ------------- Animation der Buttons ------------------------------ */
-#galery-preview--multiple:hover .button-prev {
+#galery_preview--multiple:hover .button_prev {
 	left: -2%;
 }
-#galery-preview--multiple:hover .button-next {
+#galery_preview--multiple:hover .button_next {
 	right: -2%;
 }
-#galery-preview--medium:hover .button-prev {
+#galery_preview--medium:hover .button_prev {
 	left: -2%;
 }
-#galery-preview--medium:hover .button-next {
+#galery_preview--medium:hover .button_next {
 	right: -2%;
 }
 
 /* -------- verschiedene Vorschauen (multiple, medium und full) ----- */
 
-#galery-preview--multiple, #galery-preview--full {
+#galery_preview--multiple, #galery_preview--full {
 	background-color: black;
 	margin-right: auto;
 	text-align: center;
@@ -87,21 +72,19 @@
 	margin-top: 0.5%;
 	margin-bottom: 0.5%;
 }
-#galery-preview--multiple {
-	width: 80%;
-	margin-left: 10%;
+#galery_preview--multiple {
 	position: relative;
 }
-#galery-preview--medium {
-	width: 64%;
-	margin-left: 18%;
+#galery_preview--medium {
+	width: 80%;
+	margin-left: 10%;
 	margin-right: auto;
 	position: relative;
 	background-color: black;
 	text-align: center;
 	vertical-align: middle;
 }
-#galery-preview--full {
+#galery_preview--full {
 	width: 100%;
 	height: 100%;
 	margin: 0px;
@@ -113,17 +96,17 @@
 	left: 0;
 	z-index: 10;
 }
-#galery-preview--all {
+#galery_preview--all {
 	vertical-align: middle;
 }
-#galery-preview--all img {
+#galery_preview--all img {
 	width: 17%;
 }
 
 
 /* ------------- verschiedene Bildergrößen (small, medium, big) ----- */
 
-.galery-img--small {
+.galery_img--small {
 	width: 20%;
 	padding: 1px;
 	height: auto;
@@ -135,7 +118,7 @@
 	filter:alpha(opacity=80);
 }
 
-.galery-img--big {
+.galery_img--big {
 	max-width: 80%;
 	max-height: 100%;
 	width: auto;
@@ -144,13 +127,13 @@
 	opacity: 0.8;
 	filter:alpha(opacity=80);
 }
-.galery-img--big:hover, .galery-img--small:hover { /* heller werden bei hover */
+.galery_img--big:hover, .galery_img--small:hover { /* heller werden bei hover */
 	cursor: pointer; /*  */
 	opacity: 1.0;
 	filter:alpha(opacity=100);
 }
 
-.galery-preview-img-full-wrapper {
+.galery_preview_img_full_wrapper {
 	display: inline-block;
 	max-width: 80%;
 	max-height: 80%;
@@ -161,7 +144,7 @@
 	margin-bottom: auto;
 }
 
-.galery-img--full {
+.galery_img--full {
 	max-width: 100%;
 	max-height: 100%;
 	height: auto;

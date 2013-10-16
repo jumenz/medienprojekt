@@ -7,9 +7,7 @@
 		<meta name="description" content="
 			Forum der Damen des Este 06/70.
 		">
-		<link rel="stylesheet" type="text/css" href="css/comment.css"/>
-		<link rel="stylesheet" type="text/css" href="css/forum.css"/>
-		<script type="text/javascript" src="js/display.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/forum.css"/>
 	</head>
 	<body>
 		<!------------------------ header ----------------------------->
@@ -150,26 +148,27 @@
 									<!--end Page Title -->
 									
 									<div class="content-list">
-									<!--Contentbox One-Col Tablehead-->
-										<?php for($i=1; $i<=12; $i++) : ?>					<!-- TODO anders befüllen -->
-										<ul>
-											<li class="one-col">
-												<div class="main-content-box box-borders-top bg clearfix toggle-item">
-													<h2 class="box-title link toggle" id="address-name" >Box Überschrift</h2>
-													<div class="view-article-link link">ansehen</div><img class="icon-box-link link" src="./data/arrows.png">
-													<div class="toggle-content" style="display: none">
+                                        <ul>
+											<?php for($i=1; $i<=12; $i++) : ?>					<!-- TODO anders befüllen -->
+                                            <li class="one-col">
+                                                <!-- reports -->
+                                                <div  class="main-content-box box-borders-top bg clearfix toggle-item">
+                                                    <h2 class="box-title link toggle" id="address-name" >Box Überschrift</h2>
+                                                    <div <?php echo ("id=\"submit-$i\"")?> class="box-link down-raquo toggle-link right toggle">
+                                                    </div>
+                                                    <div class="toggle-content" style="display: none">
 														<div class="box-info clearfix light-bg">
 															<div class="left half-width">
 																<table class="first">
 																	<tbody>
-																		<tr class="first">
-																			<th class="first">Erster Schlüßel:</th>
-																			<td class="last">Wert</td>
-																		</tr>
-																		<tr>
-																			<th class="first">Zweiter Schlüßel:</th>
-																			<td class="last">Wert</td>
-																		</tr>
+																	<tr class="first">
+																		<th class="first">Erster Schlüßel:</th>
+																		<td class="last">Wert</td>
+																	</tr>
+																	<tr>
+																		<th class="first">Zweiter Schlüßel:</th>
+																		<td class="last">Wert</td>
+																	</tr>
 																	</tbody>
 																</table>
 															</div>
@@ -188,14 +187,41 @@
 																</table>
 															</div>
 														</div>
-														<div class="box-body box-borders-bottom">
+														<div class="box-body">
 															<p>Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr! Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!Zweiter Absatz mit ein wenig mehr Text und Informationen für alle. Und noch viel mehr!</p>
 														</div>
+														<!-- Contentbox Comments -->
+														<div>
+															<div  class="comment-content-box box-borders-top bg clearfix further-toggle-item">
+																<h2 class="box-title link further-toggle" id="address-name" >Kommentare: X</h2>
+																<div class="box-link down-raquo toggle-link further-toggle right">
+																</div>
+																<div class="further-toggle-content" style="display: none">
+																		<div class="box-body box-borders-bottom">
+																			<div class="comments">
+																				<div class="comment">
+																					<p class="comment-name">Name</p>
+																					<p class="comment-content">Ein Kommentar zu diesem Thema.</p>
+																					<div class="button-delete online-only"></div>
+																				</div>
+																				<div class="comment">
+																					<p class="comment-name">Name</p>
+																					<p class="comment-content">Ein Kommentar zu diesem Thema. Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.</p>
+																					<div class="button-delete online-only"></div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+															</div>
+														<div>
+														<!-- end Comment Box -->
 													</div>
-												</div>
-											</li>
-										</ul>
-										<?php endfor ?>
+                                                </div>
+                                                <!-- reports -->
+                                            </li>
+                                            <?php endfor ?>
+                                        </ul>
+										
 										<!-- end Contentbox One-Col -->
 										
 									</div>
@@ -213,5 +239,13 @@
 		<!--------------------------- footer -------------------------->
 		<?php include_once('footer.html'); ?>
 	</body>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.toggle-item').each(function(idx, itm) {
+                $(itm).find('.toggle').on('click', function() {
+                    $(itm).find('.toggle-content').toggle(200);
+                });
+            });
+        });
+    </script>
 </html>
-
