@@ -34,9 +34,8 @@
     padding-left: 7px;
 }
 .footer li {
-	margin-top: 20px;
-	margin-bottom: 20px;
 	width: 15%;
+	margin: 20px 0px;
 	padding: 0% 2.5%;
 	display: inline-block;
 	text-align: left;
@@ -47,6 +46,10 @@
 }
 .footer-nobreak {
 	display: inline;
+}
+.footer .menu-link {
+	position: relative;
+	top: 5px;
 }
 
 /* ------------------ media specific adaption ------------------------ */
