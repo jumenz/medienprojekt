@@ -409,6 +409,23 @@ aside, .main {
 	font-weight: bold;
 }
 
+/* ------------------------ Profilangaben ---------------------------------- */
+.profile {
+	
+}
+.profile-image, .profile-description {
+	padding: 3%;
+	display: inline-block;
+}
+.profile-image {
+	width: 20%;
+	height: auto;
+	margin-left: -100px;
+}
+.profile-description {
+	width: 60%;
+}
+
 /* ------------------------ Sidebar --------------------------------- */
 
 .sidebar {

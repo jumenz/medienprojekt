@@ -102,7 +102,7 @@
 							<div class="box-body">
 								<p>Shortcuts zu den wichtigsten, für alle sichtbaren Seiten.</p>
 							</div>
-							<a href="./ueber-uns.php">
+							<a href="./willkommen.php">
 								<div class="forward-raquo content-link right"></div>
 							</a>
 						</div>
