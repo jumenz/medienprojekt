@@ -278,7 +278,6 @@ aside, .main {
 .content-list {
     float: left;
     width: 100%;
-    float: left;
 }
 .content-list ul {
     position: relative;
@@ -299,10 +298,13 @@ aside, .main {
     width: 48%;
 }
 .content-list li.one-col {
-    width: 98%;
+    width: 100%;
 }
 .content-list ul li.first {
     margin-right: 2%;
+}
+.content-list ul li.three-col {
+	width: 32%;
 }
 .main-content-box {
     position:relative;

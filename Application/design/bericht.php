@@ -148,36 +148,7 @@
 									<!--end Page Title -->
 									
 									<div class="content-list">
-										<!-- Contentbox Comments -->
-                                        <ul>
-											<li class="one-col">
-                                                <!-- reports -->
-                                                <div  class="comment-content-box box-borders-top bg clearfix toggle-item">
-                                                    <h2 class="box-title link toggle" id="address-name" >Kommentare: X</h2>
-                                                    <div <?php echo ("id=\"submit-$i\"")?> class="box-link down-raquo toggle-link right toggle">
-                                                    </div>
-                                                    <div class="toggle-content" style="display: none">
-                                                            <div class="box-body box-borders-bottom">
-                                                                <div class="comments">
-																	<?php for($i=1; $i<=3; $i++) : ?>					<!-- TODO anders befüllen -->
-																	<div class="comment">
-																		<p class="comment-name">Name</p>
-																		<p class="comment-content">Ein Kommentar zu diesem Thema.</p>
-																		<div class="button-delete online-only"></div>
-																	</div>
-																	<div class="comment">
-																		<p class="comment-name">Name</p>
-																		<p class="comment-content">Ein Kommentar zu diesem Thema. Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.Ein Kommentar zu diesem Thema.</p>
-																		<div class="button-delete online-only"></div>
-																	</div>
-																	<?php endfor ?>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <!-- end Comment Box -->
+										<!-- with comment box -->
                                         <ul>
 											<?php for($i=1; $i<=12; $i++) : ?>					<!-- TODO anders befüllen -->
                                             <li class="one-col">
@@ -251,7 +222,7 @@
                                             </li>
                                             <?php endfor ?>
                                         </ul>
-										
+										<!-- end with comment box -->
 										<!-- end Contentbox One-Col -->
 										
 									</div>

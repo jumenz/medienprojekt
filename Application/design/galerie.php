@@ -17,14 +17,14 @@
 		<?php include_once('header.html'); ?>
 		
 		<!-- Fullview -->
-		<div id="galery_preview--full" class="hidden"> <!-- onclick="hideElement( this.id );" -->
-			<div class="button_prev" onclick=""></div>
+		<div id="galery-preview--full" class="hidden"> <!-- onclick="hideElement( this.id );" -->
+			<div class="button-prev" onclick=""></div>
 			<!-- extra div um close button am Bild auszurichten -->
-			<div class="galery_preview_img_full_wrapper">
-				<div class="button_close" onclick="hideElement('galery_preview--full');"></div>
-				<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery_img--full" id="galery_preview_full_img">
+			<div class="galery-preview-img-full-wrapper">
+				<div class="button-close" onclick="hideElement('galery-preview--full');"></div>
+				<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery-img--full" id="galery-preview-full-img">
 			</div>
-			<div class="button_next" onclick=""></div>
+			<div class="button-next" onclick=""></div>
 		</div>
 		
 		<div class="main-container">
@@ -44,15 +44,15 @@
 										<!-- Sidebar Menu -->
 										<div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg">
 											<ul class="menu">
-												<li onclick="toggleDisplay('galery_preview--all');toggleDisplay('galery_preview--multiple');toggleDisplay('galery_preview--medium');">
+												<li onclick="toggleDisplay('galery-preview--all');toggleDisplay('galery-preview--multiple');toggleDisplay('galery-preview--medium');">
 													<span>Alle Bilder</span>
 													<div class="forward-raquo menu-link right"></div>
 												</li>
-												<li onclick="toggleDisplay('galery_preview--all');toggleDisplay('galery_preview--multiple');toggleDisplay('galery_preview--medium');">
+												<li onclick="toggleDisplay('galery-preview--all');toggleDisplay('galery-preview--multiple');toggleDisplay('galery-preview--medium');">
 													<span>Galerie</span>
 													<div class="forward-raquo menu-link right"></div>
 												</li>
-												<li onclick="showElement('galery_preview--full')">
+												<li onclick="showElement('galery-preview--full')">
 													<span>Vollbild</span>
 													<div class="forward-raquo menu-link right"></div>
 												</li>
@@ -148,10 +148,10 @@
 												<div class="main-content-box box-borders bg clearfix">
 													<div class="box-body">
 														<!-- show all pictures -->
-														<div id="galery_preview--all" class="hidden">
-															<div class="galery_preview--all_images">
+														<div id="galery-preview--all" class="hidden">
+															<div class="galery-preview--all-images">
 																<?php for($i=1; $i<=50; $i++) : ?>
-																<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery_img--small"
+																<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery-img--small"
 																	onclick="fullView( this.src );"
 																>
 																<?php endfor ?>
@@ -160,21 +160,21 @@
 														
 														
 														<!-- medium view -->
-														<div id="galery_preview--multiple" class="round_corners" >
-															<div class="button_prev" onclick=""></div>
+														<div id="galery-preview--multiple" class="round-corners" >
+															<div class="button-prev" onclick=""></div>
 															<?php for($i=1; $i<=4; $i++) : ?>
-															<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery_img--small"
+															<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery-img--small"
 																onclick="fullView( this.src );"
 															>
 															<?php endfor ?>
-															<div class="button_next" onclick=""></div>
+															<div class="button-next" onclick=""></div>
 														</div>
-														<div class="round_corners" id="galery_preview--medium">
-															<div class="button_prev" onclick=""></div>
-															<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery_img--big"
+														<div class="round-corners" id="galery-preview--medium">
+															<div class="button-prev" onclick=""></div>
+															<img src="http://miriadna.com/desctopwalls/images/max/Fairy-forest.jpg" class="galery-img--big"
 																	onclick="fullView( this.src );"
 															>
-															<div class="button_next" onclick=""></div>
+															<div class="button-next" onclick=""></div>
 														</div>
 													</div>
 													<h2 class="box-title">Box Überschrift</h2>
