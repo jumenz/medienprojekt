@@ -46,6 +46,7 @@ switch($action)
     case 'list';
         $model->setListData()
         ->sortListData('name');
+        $action = 'adressbuch';
         break;
     case 'edit';
         $model->setData($_POST)
@@ -85,6 +86,6 @@ if ($action == 'back')
 }
 else
 {
-    require_once('../View/Addresses/' . ucwords($action) . '.phtml');
+    require_once($action . '.php');
 
 }

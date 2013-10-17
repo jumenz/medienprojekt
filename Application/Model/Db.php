@@ -90,7 +90,7 @@ class Application_Model_Db
      */
     public function deleteAddress($id, $name, $prename)
     {
-        if ($id != 'Bewerber ID')
+        if ($id != 'ID')
         {
             $sql = 'DELETE FROM `' . $this->table . '` WHERE `id` = "' . $id . '"';
         }

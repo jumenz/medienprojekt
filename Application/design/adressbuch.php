@@ -13,13 +13,13 @@ include_once('head.html');
 <?php
 $isAdmin = false; // TODO test auf admin -> hier ändern für andere testansicht!
 $userId = '2'; // TODO userid eintragen
-// $dataArray = $model->getListData(); // aufruf für db anbindung
+//$dataArray = $model->getListData(); // aufruf für db anbindung
 $dataArray = array(
     '0' => array(
         'id' => '1',
         'name' => 'Menzel',
         'prename' => 'Julia',
-        'date_birth' => '22.12.1984',
+        'birthday' => '22.12.1984',
         'street' => 'Musterstraße',
         'nr' => '66',
         'zipcode' => '21193',
@@ -32,7 +32,7 @@ $dataArray = array(
         'id' => '2',
         'name' => 'Schwartau',
         'prename' => 'Ellen',
-        'date_birth' => '11.06.1992',
+        'birthday' => '11.06.1992',
         'street' => 'Musterstraße',
         'nr' => '12',
         'zipcode' => '21193',
@@ -44,7 +44,7 @@ $dataArray = array(
 );
 $rows = count($dataArray);
 //$cols = count($data_Array, COUNT_RECURSIVE)/$rows;
-//print_r($dataArray);
+print_r($dataArray);
 ?>
 </head>
 <body id="addresses">
@@ -200,7 +200,7 @@ $rows = count($dataArray);
                                                         <label for="date-birth">Geburtsdatum</label>
                                                         <p class="input">
                                                             <input type="text" id="date-birth" class="input input-text" title="Geburtsdatum"
-                                                                   name="date_birth" maxlength="10" value="<?php echo $dataArray[$i]['date_birth']; ?>">
+                                                                   name="birthday" maxlength="10" value="<?php echo $dataArray[$i]['birthday']; ?>">
                                                         </p>
                                                     </div>
                                                 </fieldset>
