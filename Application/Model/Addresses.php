@@ -28,10 +28,6 @@ class Application_Model_Addresses
     /**
      * @var string
      */
-    protected $prefix;
-    /**
-     * @var string
-     */
     protected $name;
     /**
      * @var string
@@ -40,7 +36,7 @@ class Application_Model_Addresses
     /**
      * @var string
      */
-    protected $date_birth;
+    protected $birthday;
     /**
      * @var string
      */
@@ -60,7 +56,7 @@ class Application_Model_Addresses
     /**
      * @var string
      */
-    protected $mail;
+    protected $email;
     /**
      * @var string
      */
@@ -98,9 +94,9 @@ class Application_Model_Addresses
      */
     public function changeDate2MySql()
     {
-        if ($this->date_birth != '')
+        if ($this->birthday != '')
         {
-            $this->date_birth = $this->resourceModel->dateGerman2MySql($this->getDateBirth());
+            $this->birthday = $this->resourceModel->dateGerman2MySql($this->getBirthday());
         }
         return $this;
     }
@@ -123,15 +119,14 @@ class Application_Model_Addresses
      */
     public function getData() {
         $valueArray = array(
-            'prefix' => ucfirst($this->getPrefix()),
             'name' => ucfirst($this->getName()),
             'prename' => ucfirst($this->getPrename()),
-            'birthday' => changeDate2German($this->getDateBirth()),
+            'birthday' => $this->getBirthday(),
             'street' => ucfirst($this->getStreet()),
             'nr' => $this->getNr(),
             'zipcode' => $this->getZipcode(),
             'city' => ucfirst($this->getCity()),
-            'mail' => $this->getMail(),
+            'email' => $this->getEmail(),
             'mobile' => $this->getMobile(),
             'phone' => $this->getPhone()
         );
@@ -161,28 +156,6 @@ class Application_Model_Addresses
     }
 
     /**
-     * Sets prefix
-     *
-     * @param string $prefix
-     * @return Application_Model_Addresses
-     */
-    public function setPrefix($prefix)
-    {
-        $this->prefix = $prefix;
-        return $this;
-    }
-
-    /**
-     * Returns prefix
-     *
-     * @return string
-     */
-    public function getPrefix()
-    {
-        return $this->prefix;
-    }
-
-    /**
      * Sets zipcode
      *
      * @param string $zipcode
@@ -207,12 +180,12 @@ class Application_Model_Addresses
     /**
      * Sets Date of Birth
      *
-     * @param $date_birth string
+     * @param $birthday string
      * @return Application_Model_Addresses
      */
-    public function setDateBirth($date_birth)
+    public function setBirthday($birthday)
     {
-        $this->date_birth = $date_birth;
+        $this->birthday = $birthday;
         return $this;
     }
 
@@ -221,9 +194,9 @@ class Application_Model_Addresses
      *
      * @return string
      */
-    public function getDateBirth()
+    public function getBirthday()
     {
-        return $this->date_birth;
+        return $this->birthday;
     }
 
     /**
@@ -251,18 +224,6 @@ class Application_Model_Addresses
     public function setNr($nr)
     {
         $this->nr = $nr;
-        return $this;
-    }
-
-    /**
-     * Sets postal code
-     *
-     * @param $postal_code
-     * @return Application_Model_Addresses
-     */
-    public function setPostalCode($postal_code)
-    {
-        $this->postal_code = $postal_code;
         return $this;
     }
 
@@ -313,24 +274,14 @@ class Application_Model_Addresses
     }
 
     /**
-     * Returns postal code
+     * Sets email
      *
-     * @return string
-     */
-    public function getPostalCode()
-    {
-        return $this->postal_code;
-    }
-
-    /**
-     * Sets e-mail
-     *
-     * @param $mail
+     * @param $email
      * @return Application_Model_Addresses
      */
-    public function setMail($mail)
+    public function setEmail($email)
     {
-        $this->mail = $mail;
+        $this->email = $email;
         return $this;
     }
 
@@ -339,9 +290,9 @@ class Application_Model_Addresses
      *
      * @return string
      */
-    public function getMail()
+    public function getEmail()
     {
-        return $this->mail;
+        return $this->email;
     }
 
     /**
@@ -443,7 +394,7 @@ class Application_Model_Addresses
     /**
      * Deletes address
      */
-    public function deleteAdress($id, $name, $prename)
+    public function deleteAddress($id, $name, $prename)
     {
         $this->resourceModel->deleteAddress($id, $name, $prename);
     }
@@ -451,33 +402,9 @@ class Application_Model_Addresses
     /**
      * Updates address
      */
-    public function update($data)
+    public function update($data, $id)
     {
-        $this->resourceModel->update($data);
-    }
-
-    /**
-     * Validates address information
-     */
-    public function validate()
-    {
-
-    }
-
-    /**
-     * Sends mail to person
-     */
-    public function contact()
-    {
-
-    }
-
-    /**
-     * Print address information
-     */
-    public function printDocument()
-    {
-
+        $this->resourceModel->update($data, $id);
     }
 
     /**

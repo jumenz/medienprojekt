@@ -1,3 +1,18 @@
+<?php
+$id = '';
+if (isset($_GET['action']))
+{
+    $action =  $_GET['action'];
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        require_once('../Controller/AddressesController.php?action=' . $action . '?id=' . $id);
+    } else {
+        require_once('../Controller/AddressesController.php?action=' . $action);
+    }
+
+}
+require_once('../Controller/AddressesController.php?action=list');
+?>
 <html>
 <head>
 <!-- common settings -->
@@ -12,9 +27,10 @@ include_once('head.html');
 </head>
 <?php
 $isAdmin = false; // TODO test auf admin -> hier ändern für andere testansicht!
-$userId = '2'; // TODO userid eintragen
-//$dataArray = $model->getListData(); // aufruf für db anbindung
-$dataArray = array(
+$userId = '4'; // TODO userid abrufen
+$userMail = 'ellen@example.com'; // TODO userMail abrufen
+$dataArray = $model->getListData(); // aufruf für db anbindung
+/*$dataArray = array(
     '0' => array(
         'id' => '1',
         'name' => 'Menzel',
@@ -24,7 +40,7 @@ $dataArray = array(
         'nr' => '66',
         'zipcode' => '21193',
         'city' => 'Hamburg',
-        'mail' => 'jumenz@web.de',
+        'email' => 'jumenz@web.de',
         'mobile' => '0160-1234567',
         'phone' => '040-1234567'
     ),
@@ -37,11 +53,11 @@ $dataArray = array(
         'nr' => '12',
         'zipcode' => '21193',
         'city' => 'Hamburg',
-        'mail' => 'ellen.schwartau@hotmail.de',
+        'email' => 'ellen.schwartau@hotmail.de',
         'mobile' => '0160-1234567',
         'phone' => '040-1234567'
     )
-);
+);*/
 $rows = count($dataArray);
 //$cols = count($data_Array, COUNT_RECURSIVE)/$rows;
 print_r($dataArray);
@@ -108,6 +124,7 @@ print_r($dataArray);
             <div id="addressbook" class="content-list">
                 <!--Contentbox One-Col Dropdown -->
                 <ul>
+                    <!--adminpanel new entry -->
                     <?php if ($isAdmin) : ?>
                         <li class="one-col">
                             <div class="main-content-box box-borders-top bg clearfix toggle-item">
@@ -120,6 +137,19 @@ print_r($dataArray);
                             </div>
                         </li>
                     <?php endif ?>
+                    <!--end adminpanel new entry -->
+
+                    <li class="one-col">
+                        <div class="main-content-box box-borders-top bg clearfix">
+                            <h2 class="box-title link" >Alle</h2>
+                            <a class="right box-link"
+                               href="mailto:<?php echo $userMail; ?>?bcc=<?php $k=0; for (; $k<$rows-1; $k++) { echo $dataArray[$k]['email'] . ',%20';} echo $dataArray[$k]['email'] . '&amp;subject=Este%2006/70%20-%20Frauen'; ?>">
+                                <span>E-Mail</span>
+                                <div class="forward-raquo menu-link right"></div>
+                            </a>
+                        </div>
+                    </li>
+
                     <?php $abc = $rows>0 ? $dataArray[0]['name'][0] : '';?>
                     <!-- foreach addresses -->
                     <?php for ($i=0; $i<$rows; $i++) : ?>
@@ -129,13 +159,13 @@ print_r($dataArray);
                                 <h2 class="box-title link toggle" id="address-name" >
                                     <?php echo $dataArray[$i]['name']; ?>,&nbsp;<?php echo $dataArray[$i]['prename']; ?>
                                 </h2>
-                                <a class="right box-link" href="mailto:<?php echo $dataArray[$i]['mail']; ?>">
+                                <a class="right box-link" href="mailto:<?php echo $dataArray[$i]['email']; ?>">
                                     <span>E-Mail</span>
                                     <div class="forward-raquo menu-link right"></div>
                                 </a>
                                 <?php if ($dataArray[$i]['id'] == $userId || $isAdmin) : ?>
                                 <div class="box-body toggle-content box-borders-bottom" style="display: none;">
-                                    <form name="edit" action="../Controller/AddressesController.php" method="post" >
+                                    <form name="edit-<?php echo $i ?>" action="#" method="post" >
                                         <ul>
                                             <li class="first two-col">
                                                 <fieldset class="first">
@@ -176,10 +206,10 @@ print_r($dataArray);
                                             <li class="last two-col">
                                                 <fieldset class="last clearfix">
                                                     <div class="form-item required">
-                                                        <label for="mail">E-Mail *</label>
+                                                        <label for="email">E-Mail *</label>
                                                         <p class="input">
-                                                            <input type="text" id="mail" class="input input-text required-entry" title="E-Mail-Adresse"
-                                                                   name="mail" maxlength="255" value="<?php echo $dataArray[$i]['mail']; ?>">
+                                                            <input type="text" id="email" class="input input-text required-entry" title="E-Mail-Adresse"
+                                                                   name="email" maxlength="255" value="<?php echo $dataArray[$i]['email']; ?>">
                                                         </p>
                                                     </div>
                                                     <div class="form-item">
@@ -200,7 +230,7 @@ print_r($dataArray);
                                                         <label for="date-birth">Geburtsdatum</label>
                                                         <p class="input">
                                                             <input type="text" id="date-birth" class="input input-text" title="Geburtsdatum"
-                                                                   name="birthday" maxlength="10" value="<?php echo $dataArray[$i]['birthday']; ?>">
+                                                                   name="birthday" maxlength="10" value="<?php if ($data_Array[$i]['birthday'] != '0000-00-00') { echo $model->changeDate2German($dataArray[$i]['birthday']); } ?>">
                                                         </p>
                                                     </div>
                                                 </fieldset>
@@ -211,6 +241,7 @@ print_r($dataArray);
                                             <div class="form-submit">
                                                 <p id="required">* Pflichtfelder</p>
                                                 <p>
+                                                    <input type="hidden" name="id" value="<?php echo $dataArray[$i]['id']; ?>"/>
                                                     <button class="dark-bg" type="reset" name="reset" value="update"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
                                                     <button class="dark-bg" type="submit" name="action" value="update"><div class="forward-raquo menu-link right"></div>Aktualisieren</button>
                                                 </p>
@@ -224,11 +255,14 @@ print_r($dataArray);
                                         <?php echo $dataArray[$i]['prename']; ?>&nbsp;<?php echo $dataArray[$i]['name']; ?><br />
                                         <?php echo $dataArray[$i]['street'] . ' '; if ($dataArray[$i]['nr'] != '0') { echo $dataArray[$i]['nr'];} ?><br />
                                         <?php if ($dataArray[$i]['zipcode'] != '0') { echo $dataArray[$i]['zipcode']; } echo ' ' . $dataArray[$i]['city']; ?><br /><br />
-                                        <a href="mailto:<?php echo $dataArray[$i]['mail']; ?>">
-                                            <?php echo $dataArray[$i]['mail']; ?>
+                                        <a href="mailto:<?php echo $dataArray[$i]['email']; ?>">
+                                            <?php echo $dataArray[$i]['email']; ?>
                                         </a><br />
                                         <?php echo $dataArray[$i]['mobile']; ?><br />
-                                        <?php echo $dataArray[$i]['phone']; ?><br />
+                                        <?php echo $dataArray[$i]['phone']; ?><br /><br />
+                                        <?php if ($data_Array[$i]['birthday'] != '0000-00-00'): ?>
+                                            <?php echo $model->changeDate2German($dataArray[$i]['birthday']); ?>
+                                        <?php endif ?>
                                     </p>
                                 </div>
                                 <?php endif ?>

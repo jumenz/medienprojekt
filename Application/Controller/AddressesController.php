@@ -21,11 +21,17 @@ if (isset($_POST['action']))
     if (isset($_POST['id']))
     {
         $id = $_POST['id'];
+    }
+    if (isset($_POST['name']))
+    {
         $name = $_POST['name'];
+    }
+    if (isset($_POST['prename']))
+    {
         $prename = $_POST['prename'];
     }
 }
-else if (isset($_GET['action']))
+if (isset($_GET['action']))
 {
     $action = $_GET['action'];
     if (isset($_GET['id']))
@@ -36,7 +42,7 @@ else if (isset($_GET['action']))
 else
 {
     $action = 'back';
-    echo '<p>Es ist ein Fehler aufgetreten. Bitte versuche es noch einmal.</p>';
+    echo '<p class="error message">Es ist ein Fehler aufgetreten. Bitte versuche es noch einmal.</p>';
 }
 
 switch($action)
@@ -65,10 +71,11 @@ switch($action)
         $action = 'back';
         break;
     case 'update';
+        print_r($_POST);
         $model->setData($_POST)
             ->changeDate2MySql()
-            ->update($model->getData());
-        $action = 'back';
+            ->update($model->getData(), $id);
+        $action = '#';
         break;
     case 'detail';
         $model->setAddressData($id, $name , $prename);
@@ -79,13 +86,12 @@ switch($action)
         $action = 'list';
         break;
 }
-
 if ($action == 'back')
 {
-     require('../View/Entry.phtml');
-}
-else
-{
-    require_once($action . '.php');
+    require('../design/home.php');
+} else if ($action == '#') {
+    require_once('AddressesController.php?action=list');
+} else {
+    require_once('../design/' . $action . '.php');
 
 }

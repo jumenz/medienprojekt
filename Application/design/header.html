@@ -8,14 +8,6 @@
 				<span class="nav-wide">Über uns</span>
 				<img class="nav-reduced icon" src="../../data/icons/icon-info.png"/>
 			</a>
-			<ul class="submenue">
-				<li><a href="./verein.php">Verein</a></li>
-				<li><a href="./mannschaft.php">Mannschaft</a></li>
-				<li><a href="./mannschaft.php">Trainer</a></li>
-				<li><a href="./mannschaft.php">Training</a></li>
-				<li><a href="./kontakt.php">Anfahrt</a></li>
-				<li><a href="./kontakt.php">Kontakt</a></li>
-			</ul>
 		</li>
 		<li>
 			<a href="bericht.php">
@@ -56,11 +48,12 @@
 				<span class="nav-wide">Home</span>
 				<img class="nav-reduced icon" src="../../data/icons/icon-home.png"/>
 			</a>
-			<ul class="submenue">
-				<li><a href="adressbuch.php">Adressbuch</a></li>
-				<li><a href="termine.php">Termine</a></li>
-				<li><a>Logout</a></li>
-			</ul>
+            <ul class="submenue">
+                <!--<li><form name="add_list" action="../Controller/AddressesController.php" method="get" ><button class="submenu-link" type="submit" name="action" value="list">Adressbuch</button></form></li>-->
+                <li><a href="../Controller/AddressesController.php?action=list">Adressbuch</a></li>
+                <li><a href="termine.php">Termine</a></li>
+                <li><a>Logout</a></li>
+            </ul>
 		</li>
 	</ul>
 	

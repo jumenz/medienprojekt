@@ -15,7 +15,20 @@
 .nav a:hover {
 	color: #CED1D1;
 }
+.submenue form {
+    clear: both;
+    font-size: smaller;
+    height: 25px;
+}
 
+button.submenu-link {
+    color: #FFFFFF;
+    background: transparent;
+}
+button.submenu-link:hover {
+    color: #CED1D1;
+    background: transparent;
+}
 /* ------------------- Navigation ----------------------------------- */
 .nav {	
 	width: 100%;

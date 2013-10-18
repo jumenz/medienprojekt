@@ -1,0 +1,2 @@
+- Proxy lokal setzen
+git config --local http.proxy proxy.fh-wedel.de:3128
