@@ -21,9 +21,7 @@
                 <div class="inner">
                     <div id="..." class="content-list dark-bg toggle-item">
                         <h2 class="sidebar-title display-desktop">Chronik</h2>
-                        <div id="menu-div" class="menublock-sidebar hidden-desktop toggle">
-                            <h2 class="menu-title link" id="menu-sidebar" >Menü</h2>
-                        </div>
+                        <div id="menu-div" class="menublock-sidebar hidden-desktop toggle menu-icon right"></div>
                         <!-- Sidebar Menu -->
                         <div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg toggle-content">
                             <ul class="menu">

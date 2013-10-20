@@ -60,31 +60,6 @@ class Application_Model_Db
      * Updates database
      *
      * @param array $valueArray
-
-    public function update(array $valueArray)
-    {
-        $count = count($valueArray);
-        $i = 1;
-        $dataString = '';
-        foreach ($valueArray as $key => $value)
-        {
-            $dataString .= '`' . $key . '` = "' . $value . '"';
-            if ($i<$count)
-            {
-                $dataString .= ' , ';
-            }
-            ++$i;
-        }
-        $sql = 'UPDATE  `' . $this->table . '` SET ' . $dataString;
-        $db_success = mysql_query($sql)
-            or die("Datenupdate fehlgeschlagen: " . mysql_error());
-        mysql_close($this->db_link);
-    }*/
-
-    /**
-     * Updates database
-     *
-     * @param array $valueArray
      * @param $id
      */
     public function update($valueArray, $id)
@@ -167,7 +142,7 @@ class Application_Model_Db
             $sql = 'SELECT * FROM `' . $this->table . '` WHERE `name` = "' . $name . '" AND `prename` = "' . $prename . '"';
         }
         $db_success = mysql_query($sql)
-            or die('Laden der Daten fehlgeschlagen: ' . mysql_error());
+            or die('Laden der Adressdaten fehlgeschlagen: ' . mysql_error());
         $data = mysql_fetch_array($db_success, MYSQL_ASSOC);
         return $data;
     }

@@ -422,6 +422,7 @@ class Application_Model_Addresses
      * Sorts the array with data from database by parameter
      *
      * @param $sort
+     * @return Application_Model_Addresses
      */
     public function sortListData($sort)
     {
@@ -445,6 +446,7 @@ class Application_Model_Addresses
                     break;
             }
         }
+        return $this;
     }
 
     /**

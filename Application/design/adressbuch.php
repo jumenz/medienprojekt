@@ -1,68 +1,24 @@
 <?php
-$id = '';
-if (isset($_GET['action']))
-{
-    $action =  $_GET['action'];
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        require_once('../Controller/AddressesController.php?action=' . $action . '?id=' . $id);
-    } else {
-        require_once('../Controller/AddressesController.php?action=' . $action);
-    }
-
-}
-require_once('../Controller/AddressesController.php?action=list');
+require_once('../Model/Addresses.php');
+require_once('../Controller/AddressController.php');
+$isAdmin = true; // TODO test auf admin -> hier ändern für andere testansicht!
+$userId = '4'; // TODO userid abrufen
+$userMail = 'ellen@example.com'; // TODO userMail abrufen
+$rows = count($dataArray);
+//print_r($dataArray);
 ?>
 <html>
+
 <head>
 <!-- common settings -->
-<?php
-include_once('head.html');
-?>
+<?php include_once('head.html'); ?>
 <!-- page specific settings -->
 <title>Este Frauen | Adressbuch</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" type="text/css" href="../../css/addresses.css"/>
 <script type="text/javascript" src="../../js/db.js"></script>
 </head>
-<?php
-$isAdmin = false; // TODO test auf admin -> hier ändern für andere testansicht!
-$userId = '4'; // TODO userid abrufen
-$userMail = 'ellen@example.com'; // TODO userMail abrufen
-$dataArray = $model->getListData(); // aufruf für db anbindung
-/*$dataArray = array(
-    '0' => array(
-        'id' => '1',
-        'name' => 'Menzel',
-        'prename' => 'Julia',
-        'birthday' => '22.12.1984',
-        'street' => 'Musterstraße',
-        'nr' => '66',
-        'zipcode' => '21193',
-        'city' => 'Hamburg',
-        'email' => 'jumenz@web.de',
-        'mobile' => '0160-1234567',
-        'phone' => '040-1234567'
-    ),
-    '1' => array(
-        'id' => '2',
-        'name' => 'Schwartau',
-        'prename' => 'Ellen',
-        'birthday' => '11.06.1992',
-        'street' => 'Musterstraße',
-        'nr' => '12',
-        'zipcode' => '21193',
-        'city' => 'Hamburg',
-        'email' => 'ellen.schwartau@hotmail.de',
-        'mobile' => '0160-1234567',
-        'phone' => '040-1234567'
-    )
-);*/
-$rows = count($dataArray);
-//$cols = count($data_Array, COUNT_RECURSIVE)/$rows;
-print_r($dataArray);
-?>
-</head>
+
 <body id="addresses">
 <!-- header -->
 <?php include_once('header.html'); ?>
@@ -130,9 +86,89 @@ print_r($dataArray);
                             <div class="main-content-box box-borders-top bg clearfix toggle-item">
                                 <h2 class="box-title link toggle" >Neuer Eintrag</h2>
                                 <div class="box-body toggle-content box-borders-bottom" id="box-address-name" style="display: none;">
-                                    <p>
-                                        <!--new felder -->uehrsfliuherlf
-                                    </p>
+                                    <form name="edit-<?php echo $i ?>" action="adressbuch.php" method="post" >
+                                        <ul>
+                                            <li class="first two-col">
+                                                <fieldset class="first">
+                                                    <div class="form-item">
+                                                        <label for="prename">Vorname *</label>
+                                                        <p class="input">
+                                                            <input type="text" id="prename" class="input input-text required-entry" title="Vorname"
+                                                                   name="prename" maxlength="255" value="">
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label for="name">Name *</label>
+                                                        <p class="input">
+                                                            <input type="text" id="name" class="input input-text required-entry" title="Name"
+                                                                   name="name" maxlength="255" value="">
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label for="street">Strasse, Nr</label>
+                                                        <p class="input">
+                                                            <input type="text" id="street" class="input input-text left-text" title="Strasse" name="street"
+                                                                   maxlength="255" value="<?php echo $dataArray[$i]['street']; ?>">
+                                                            <input type="text" id="nr" class="input input-text right-text" title="Hausnummer" name="nr"
+                                                                   maxlength="6" value="">
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label for="city">PLZ, Ort</label>
+                                                        <p class="input">
+                                                            <input type="text" id="zipcode" class="input input-text left-text" title="Postleitzahl" name="zipcode"
+                                                                   maxlength="5" value="<?php echo $dataArray[$i]['zipcode']; ?>">
+                                                            <input type="text" id="city" class="input input-text right-text" title="Stadt" name="city"
+                                                                   maxlength="255" value="">
+                                                        </p>
+                                                    </div>
+                                                </fieldset>
+                                            </li>
+                                            <li class="last two-col">
+                                                <fieldset class="last clearfix">
+                                                    <div class="form-item required">
+                                                        <label for="email">E-Mail *</label>
+                                                        <p class="input">
+                                                            <input type="text" id="email" class="input input-text required-entry" title="E-Mail-Adresse"
+                                                                   name="email" maxlength="255" value="">
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label for="phone">Festnetznummer (040-123456)</label>
+                                                        <p class="input">
+                                                            <input type="text" id="phone" class="input input-text" title="Festnetznummer" name="phone"
+                                                                   maxlength="32" value="">
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label for="phone">Handynummer (0160-123456)</label>
+                                                        <p class="input">
+                                                            <input type="text" id="mobile" class="input input-text" title="Handynummer" name="mobile"
+                                                                   maxlength="32" value="">
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-item">
+                                                        <label for="date-birth">Geburtsdatum</label>
+                                                        <p class="input">
+                                                            <input type="text" id="date-birth" class="input input-text" title="Geburtsdatum"
+                                                                   name="birthday" maxlength="10" value="">
+                                                        </p>
+                                                    </div>
+                                                </fieldset>
+                                            </li>
+                                        </ul>
+                                        <hr />
+                                        <fieldset id="buttons">
+                                            <div class="form-submit">
+                                                <p id="required">* Pflichtfelder</p>
+                                                <p>
+                                                    <input type="hidden" name="id" value=""/>
+                                                    <button class="dark-bg" type="reset" name="reset" value="update"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
+                                                    <button class="dark-bg" type="submit" name="action" value="save"><div class="forward-raquo menu-link right"></div>Speichern</button>
+                                                </p>
+                                            </div>
+                                        </fieldset>
+                                    </form>
                                 </div>
                             </div>
                         </li>
@@ -165,7 +201,7 @@ print_r($dataArray);
                                 </a>
                                 <?php if ($dataArray[$i]['id'] == $userId || $isAdmin) : ?>
                                 <div class="box-body toggle-content box-borders-bottom" style="display: none;">
-                                    <form name="edit-<?php echo $i ?>" action="#" method="post" >
+                                    <form name="edit-<?php echo $i ?>" action="adressbuch.php" method="post" >
                                         <ul>
                                             <li class="first two-col">
                                                 <fieldset class="first">
@@ -243,6 +279,7 @@ print_r($dataArray);
                                                 <p>
                                                     <input type="hidden" name="id" value="<?php echo $dataArray[$i]['id']; ?>"/>
                                                     <button class="dark-bg" type="reset" name="reset" value="update"><div class="forward-raquo menu-link right"></div>Zurücksetzen</button>
+                                                    <button class="dark-bg" type="submit" name="action" value="delete"><div class="forward-raquo menu-link right"></div>Eintrag Löschen</button>
                                                     <button class="dark-bg" type="submit" name="action" value="update"><div class="forward-raquo menu-link right"></div>Aktualisieren</button>
                                                 </p>
                                             </div>
