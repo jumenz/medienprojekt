@@ -37,19 +37,19 @@
 
                                 </li>
                                 <li>
-                                    <a href="./mannschaft.php">
+                                    <a href="./mannschaft.php#box-mannschaft">
                                         <span>Die Mannschaft</span>
                                         <div class="forward-raquo menu-link right"></div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="./mannschaft.php">
+                                    <a href="./mannschaft.php#box-training">
                                         <span>Das Training</span>
                                         <div class="forward-raquo menu-link right"></div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="./mannschaft.php">
+                                    <a href="./mannschaft.php#box-trainer">
                                         <span>Die Trainer</span>
                                         <div class="forward-raquo menu-link right"></div>
                                     </a>
@@ -78,18 +78,12 @@
 			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
 			<div class="outer">
 			<div class="inner">
-				<!--Page Title -->
-				<h1 class="headline-main-content">
-					<span>Das sind wir!</span>
-				</h1>
-				<!--end Page Title -->
-
 				<div class="content-list">
 					<!-- with comment box -->
 				<ul>
 					<li class="one-col">
 						<!-- reports -->
-						<div  class="main-content-box box-borders-top bg clearfix toggle-item">
+						<div id="box-mannschaft" class="main-content-box box-borders-top bg clearfix toggle-item">
 							<h2 class="box-title link toggle">Die Mannschaft</h2>
 							<div class="box-link down-raquo toggle-link right toggle">
 							</div>
@@ -104,7 +98,7 @@
 						</div>
 						<li class="one-col">
 						<!-- reports -->
-						<div  class="main-content-box box-borders-top bg clearfix toggle-item">
+						<div id="box-trainer" class="main-content-box box-borders-top bg clearfix toggle-item">
 							<h2 class="box-title link toggle">Die Trainer</h2>
 							<div class="box-link down-raquo toggle-link right toggle">
 							</div>
@@ -133,7 +127,7 @@ Seit dem 25.04.2009 bin ich im Besitz der C-Lizenz als Trainer im Breitensport.<
 						</li>
 						<li class="one-col">
 							<!-- reports -->
-							<div  class="main-content-box box-borders-top bg clearfix toggle-item">
+							<div id="box-training" class="main-content-box box-borders-top bg clearfix toggle-item">
 								<h2 class="box-title link toggle">Das Training</h2>
 								<div class="box-link down-raquo toggle-link right toggle">
 								</div>
@@ -146,6 +140,7 @@ Um eine angenehme Trainingsatmosphäre sind die beiden stets bemüht und so darf
 							</div>
 						</li>
 				</ul>
+			</div>
 			</div>
 			</div>
 			</div>

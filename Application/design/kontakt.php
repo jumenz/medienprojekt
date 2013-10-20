@@ -17,14 +17,14 @@
         <div class="container">
         <div class="main">
         <div class="main-inner">
-        <!-- Sidebar -->
-        <div id="sidebar" class="content-layout-cell sidebar">
+			<!-- Sidebar -->
+			<div id="sidebar" class="content-layout-cell sidebar">
             <div class="outer">
                 <div class="inner">
                     <div id="..." class="content-list dark-bg toggle-item">
-                        <h2 class="sidebar-title display-desktop">Menü</h2>
+                        <h2 class="sidebar-title display-desktop">Kontakt</h2></h2>
                         <div id="menu-div" class="menublock-sidebar hidden-desktop toggle">
-                            <h2 class="menu-title link" id="menu-sidebar" >Menü</h2>
+                            <h2 class="menu-title link" id="menu-sidebar" >Kontakt</h2>
                         </div>
                         <!-- Sidebar Menu -->
                         <div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg toggle-content">
@@ -78,16 +78,9 @@
 			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
 			<div class="outer">
 			<div class="inner">
+				<div class="content-list">
 
-						<!--Page Title -->
-						<h1 class="headline-main-content">
-							<span id="...">Kontakt</span>
-						</h1>
-						<!--end Page Title -->
-
-						<div class="content-list">
-
-						</div>
+				</div>
 			</div>
 			</div>
 			</div>
