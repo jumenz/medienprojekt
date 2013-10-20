@@ -29,26 +29,4 @@ function showElement(elementId) {
 	var element = document.getElementById(elementId);
 	element.className = "visible";
 }
-/** Toggle 
- *	@author Julia 
- */
 
-$(document).ready(function() {
-    $('.toggle-item').each(function(idx, itm) {
-        $(itm).find('.toggle').on('click', function() {
-            $(itm).find('.content').toggle(200);
-        });
-    });
-});
-
-/** 
- * Toggle auf zweiter Stufe 
- * @author Ellen
- */
-$(document).ready(function() {
-    $('.further-toggle-item').each(function(idx, itm) {
-        $(itm).find('.further-toggle').on('click', function() {
-            $(itm).find('.further-toggle-content').toggle(200);
-        });
-    });
-});

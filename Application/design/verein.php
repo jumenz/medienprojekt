@@ -23,9 +23,9 @@
             <div class="outer">
                 <div class="inner">
                     <div id="..." class="content-list dark-bg toggle-item">
-                        <h2 class="sidebar-title display-desktop">Menü</h2>
+                        <h2 class="sidebar-title display-desktop">Verein</h2></h2>
                         <div id="menu-div" class="menublock-sidebar hidden-desktop toggle">
-                            <h2 class="menu-title link" id="menu-sidebar" >Menü</h2>
+                            <h2 class="menu-title link" id="menu-sidebar" >Verein</h2>
                         </div>
                         <!-- Sidebar Menu -->
                         <div id="box-menu-sidebar" class="menublock-sidebar menu-sidebar light-bg toggle-content">
@@ -79,17 +79,9 @@
 			<div id="main-content-small" class="content-layout-cell main-content main-content-small">
 			<div class="outer">
 			<div class="inner">
+				<div class="content-list">
 
-						<!--Page Title -->
-						<h1 class="headline-main-content">
-							<span>Der Verein - Este 06/60</span>
-						</h1>
-						<!--end Page Title -->
-
-						<div class="content-list">
-
-						</div>
-
+				</div>
 			</div>
 			</div>
 			</div>
