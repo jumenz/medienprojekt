@@ -323,8 +323,18 @@ aside, .main {
     left:12px;
     text-align: left;
 }
-.box-title {
-    top: -30px;
+.box-title-center {
+    left: 42%;
+}
+.box-title, .box-title-raquo-left, .box-title-raquo-right {
+	position: absolute;
+	top: -30px;
+}
+.box-title-raquo-left {
+	left: 5px;
+}
+.box-title-raquo-right {
+	right: 5px;
 }
 .box-link {
     position:absolute;
@@ -409,23 +419,6 @@ aside, .main {
 	font-weight: bold;
 }
 
-/* ------------------------ Profilangaben ---------------------------------- */
-.profile {
-	
-}
-.profile-image, .profile-description {
-	padding: 3%;
-	display: inline-block;
-}
-.profile-image {
-	width: 20%;
-	height: auto;
-	margin-left: -100px;
-}
-.profile-description {
-	width: 60%;
-}
-
 /* ------------------------ Sidebar --------------------------------- */
 
 .sidebar {
@@ -499,6 +492,49 @@ aside, .main {
     padding-bottom: 20px;
     padding-top: 13px;
     width: 42px;
+}
+
+
+/* ------------------------ Profilangaben ---------------------------------- */
+.profile {
+	clear: both;
+	width: 100%;
+}
+.profile .about-us-img-trainer {
+	float: right;
+	width: 30%;
+	height: auto;
+	display: inline;
+	padding-left: 5%;
+	padding-bottom: 5%;
+}
+.profile-description {
+	width: 96%;
+	padding: 2%;
+}
+/* -------------- */
+a.show-link {
+	text-decoration: underline;
+}
+.google-maps-wrapper {
+	padding: 2%;
+	width: 96%;
+	text-align:right;
+}
+.google-maps-map {
+	width: 100%;
+	height: 250px;
+}
+.about-us-img-logo {
+	float: left;
+	width: 45%;
+	height: auto;
+	margin-right: 5%;
+	margin-bottom: 5%;
+}
+.about-us-img-team {
+	width: 100%;
+	height: auto;
 }
 
 /* ---------------------------------------------------------------------
@@ -585,6 +621,7 @@ aside, .main {
         margin-left: 1%;
     }
 }
+
 /* ----------------- Media < 768px ---------------------------------- */
 @media (max-width: 768px) {
     .content-list li.two-col {
@@ -597,3 +634,29 @@ aside, .main {
         margin-left: 0;
     }
 }
+
+@media (max-width: 500px) {
+	.about-us-img-logo {
+		width: 100%;
+		margin-right: 0px;
+	}
+	.profile .about-us-img-trainer {
+		width: 50%;
+	}
+}
+
+@media (max-width: 249px) {
+	.google-maps-wrapper {
+		text-align: left;
+	}
+	.google-maps-map {
+		display: none;
+	}
+	.profile .about-us-img-trainer {
+		width: 100%;
+		margin-left: 0px;
+		margin-top: 2%;
+	}
+}
+
+

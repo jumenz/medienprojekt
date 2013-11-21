@@ -7,7 +7,6 @@
 .banner	{ 
 	width: 100%;
 }
-
 /* ------------------- links ---------------------------------------- */
 .nav a {
 	color: #FFFFFF;
@@ -56,14 +55,27 @@ button.submenu-link:hover {
 	height: 24px;
 	display: inline-block;
 	padding-top: 5px;
-	margin: -2px;
+	margin: -2px;			/* BUG */
 	position: relative; /* for relative positioning of submenue */
 }
-.nav-reduced {
-	display: none;
+.nav > li > a {
+	text-transform: uppercase;
 }
-.nav-wide {
-	display: inline;
+.nav li.nav-wide {
+	display: inline-block;
+}
+.nav li.nav-reduced {
+	display: none;
+	width: 100%;
+	text-align: right;
+	margin: -2px;     /* BUG */
+}
+.nav li.nav-reduced img {
+	max-height: 100%;
+	max-width: 100%;
+	height: auto;
+	width: auto;
+	padding-right: 3%;
 }
 /* ----------------Drop down Menu ----------------------------------- */
 .nav { 
@@ -139,10 +151,10 @@ button.submenu-link:hover {
 
 @media (max-width: 500px) {
 	/* reduced navigation */
-	.nav-reduced {
-		display: inline;
+	.nav li.nav-reduced {
+		display: block;
 	}
-	.nav-wide {
+	.nav li.nav-wide {
 		display: none;
 	}
 }

@@ -11,7 +11,7 @@
 	<body>
 		<!-- header -->
 		<?php include_once('header.html'); ?>
-				<!-- content der Seite -->
+		<!-- content der Seite -->
         <div class="main-container">
         <!-- Content -->
         <div class="container">
@@ -88,7 +88,17 @@
 							</div>
 							<div class="toggle-content" style="display: none">
 								<div class="box-body">
-							</div>
+									<p>
+									<img class="about-us-img-logo" src="../../data/logo.jpg">
+									Der SV Este 06/70 ist ein hamburger Verein, der sowohl im Fussball, Tennis und Tischtennis, als auch 
+									Fitness Volleyball und Turnen aktiv ist.<br><br>
+									Erfahre näheres über den SV Este 06/70
+									auf der <a class="show-link"  href="http://www.este0670.de">Vereins-Website</a>,<br> 
+									oder verfolge die aktuellen News auf der 
+									<a class="show-link" href="https://www.facebook.com/pages/SV-Este-0670/112846398725953">Facebook-Seite des Vereins</a>
+									.<br>
+									</p>
+								</div>
 							</div>
 						</div>
 					</li>
@@ -124,6 +134,7 @@
 									festigen, neue Spielerinnen nahtlos in den bestehenden Kader einzufügen sowie die eigenen 
 									fußballerischen Ideen weiter auf dem Platz umgesetzt sehen zu können.
 									</p>
+									<img class="about-us-img-team" src="../../data/galery/picture24.jpg">
 								</div>
 							</div>
 						</div>
@@ -138,15 +149,15 @@
 								<div class="box-body">
 									<div class="profile">
 										<h3>Mathias Schwarzer</h3><br>
-										<img class="profile-image" src="../../data/images/trainer-m.jpg" />
 										<div class="profile-description">
+											<img class="about-us-img-trainer" src="../../data/images/trainer-m.jpg" />
 											<p>" - Beschreibung - "</p>
 										</div>
 									</div>
 									<div class="profile">
 										<h3>Simon Elmers</h3><br>
-										<img class="profile-image" src="../../data/images/trainer-s.jpg" />
 										<div class="profile-description">
+											<img class="about-us-img-trainer" src="../../data/images/trainer-s.jpg" />
 											<p>"Ich bin selbst noch als Torwart aktiv im Hamburger Amateurfußball unterwegs, 
 											weshalb ich derzeit eine eurer Trainingseinheiten und leider auch das eine oder 
 											andere Spiel verpasse.
@@ -177,16 +188,23 @@
 								</div>
 								<div class="toggle-content" style="display: none">
 									<div class="box-body">
-									<p> Anders als die Spiele, welche wir in Cranz am Estebogen auf einem Rasenplatz austragen, 
+									<p>Anders als die Spiele, welche wir in Cranz am Estebogen auf einem Rasenplatz austragen, 
 									findet unser Training 2x wöchentlich in Neuenfelde im Arp-Schnittger-Stieg im "Käfig" auf 
-									einem Hartplatz statt. Immer montags ab 19.15 und donnerstags ab (?) versammelt sich die 
+									einem Hartplatz statt. 
+									<p>Immer montags ab 19.15 und donnerstags ab (?) versammelt sich die 
 									sportbegeisterte Horde um den Trainingsanweisungen unseres Trainergespanns um Mathias 
-									Schwarzer und Simon Elmers zu folgen. Im Winter weichen  wir selbstverständlich einmal 
+									Schwarzer und Simon Elmers zu folgen. </p>
+									<p>Im Winter weichen  wir selbstverständlich einmal 
 									wöchentlich in die Sporthalle Cranz aus, um einen einigermaßen geregelten Trainingsbetrieb 
-									gewährleisten zu können.
-									Um eine angenehme Trainingsatmosphäre sind die beiden stets bemüht und so darf in der ein 
+									gewährleisten zu können.</p>
+									<p>Um eine angenehme Trainingsatmosphäre sind unsere Trainer stets bemüht und so darf in der ein 
 									oder anderen Trainingseinheit ein Wettbewerb wie etwa Lattenschießen, Armwegzieh-
 									Championsleague oder ein Fußball-Biathlon nicht fehlen.
+									</p>
+									<p><br>
+									<b>Aktuelle Trainingszeiten:</b><br><br>
+									Montag, 19:15<br>
+									Donnerstag, 18:30<br>
 									</p>
 								</div>
 								</div>
@@ -200,7 +218,27 @@
 								</div>
 								<div class="toggle-content" style="display: none">
 									<div class="box-body">
-								</div>
+									<p>
+									<b>Anfahrt mit dem Auto</b><br><br>
+									Den Sportplatz am Arp-Schnitger-Stieg zum Training erreichst du wie folgt:
+									<div class="google-maps-wrapper">
+										<iframe class="google-maps-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?f=d&amp;source=s_d&amp;saddr=A7&amp;daddr=Arp-Schnitger-Stieg&amp;hl=de&amp;geocode=FbsXMQMdzxOXAA%3BFTGaMAMdmrWVAA&amp;aq=&amp;sll=53.523982,9.861946&amp;sspn=0.185119,0.445976&amp;mra=dme&amp;mrsp=0&amp;sz=12&amp;ie=UTF8&amp;ll=53.523982,9.861946&amp;spn=0.185119,0.445976&amp;t=m&amp;output=embed"></iframe>
+										<a class="show-link" href="https://maps.google.de/maps?f=d&amp;source=embed&amp;saddr=A7&amp;daddr=Arp-Schnitger-Stieg&amp;hl=de&amp;geocode=FbsXMQMdzxOXAA%3BFTGaMAMdmrWVAA&amp;aq=&amp;sll=53.523982,9.861946&amp;sspn=0.185119,0.445976&amp;mra=dme&amp;mrsp=0&amp;sz=12&amp;ie=UTF8&amp;ll=53.523982,9.861946&amp;spn=0.185119,0.445976&amp;t=m">Kartenansicht</a><br>
+									</div>
+									<br>
+									Anfahrt zum Rasenplatz in Cranz, auf dem die Spiele stattfinden:
+									<div class="google-maps-wrapper">
+										<iframe class="google-maps-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?f=d&amp;source=s_d&amp;saddr=A7&amp;daddr=Cranz+Estebogen&amp;hl=de&amp;geocode=FbsXMQMdzxOXAA%3BFULLMAMdoh2VACnlBCA3PIOxRzHAlIur7Lu0YA&amp;aq=&amp;sll=53.539199,9.83673&amp;sspn=0.092526,0.222988&amp;mra=ltm&amp;ie=UTF8&amp;ll=53.539185,9.836712&amp;spn=0.038143,0.161628&amp;t=m&amp;output=embed"></iframe>
+										<a class="show-link" href="https://maps.google.de/maps?f=d&amp;source=embed&amp;saddr=A7&amp;daddr=Cranz+Estebogen&amp;hl=de&amp;geocode=FbsXMQMdzxOXAA%3BFULLMAMdoh2VACnlBCA3PIOxRzHAlIur7Lu0YA&amp;aq=&amp;sll=53.539199,9.83673&amp;sspn=0.092526,0.222988&amp;mra=ltm&amp;ie=UTF8&amp;ll=53.539185,9.836712&amp;spn=0.038143,0.161628&amp;t=m">Kartenansicht</a><br>
+									</div>
+									</p>
+									<p>
+									<b>Anfahrt mit öffentlichen Verkehrsmitteln</b><br><br>
+									Der Platz in Cranz kann mit dem Bus Nr. 150 über die Haltestelle "Cranz Estebogen" erreicht werden.<br>
+									Um am Training teilzunehmen fährt ebenfalls die Linie 150 zur Haltestelle "Neuenfelde Kirche".
+									Von hier aus sind es noch ca. 850m bis zum Sportplatz.
+									</p>
+									</div>
 								</div>
 							</div>
 						</li>
@@ -211,7 +249,23 @@
 								</div>
 								<div class="toggle-content" style="display: none">
 									<div class="box-body">
-								</div>
+										<p><b>Du hast noch Fragen?</b><br><br>
+										Dann kontaktiere und per Mail, Telefon oder Facebook!</p>
+										<p>
+										<b>Kontaktinformationen</b><br><br>
+										SV Este 06/70<br>
+										Arp-Schnitger Stieg 37c<br>
+										Tel. (040) 7458047<br>
+										21129 Hamburg<br>
+										<br>
+										<a class="show-link" href="mailto:damen-este0670@web.de">damen-este0670@web.de</a>
+										</p>
+										<p>
+										<b>Facebook</b><br><br>
+										Besuche unsere Facebook-Seite: <a class="show-link" href="https://www.facebook.com/pages/SV-Este-0670/112846398725953">SV Este 06/70</a>.<br>
+										Dort findest du auch aktuelle Informationen zu allen Vereinsaktivitäten.
+										</p>
+									</div>
 								</div>
 							</div>
 						</li>
